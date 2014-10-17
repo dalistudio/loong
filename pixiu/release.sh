@@ -23,10 +23,10 @@ fi
 cp ./nginx-1.6.2/objs/nginx ../release/opt/loong/bin/pixiu
 
 # 复制 nginx 相关配置文件
-cp ./nginx-1.6.2/conf/mime.types ../release/opt/loong/etc/
-cp ./nginx-1.6.2/conf/fastcgi.conf ../release/opt/loong/etc/
-cp ./nginx-1.6.2/conf/fastcgi_params ../release/opt/loong/etc/
-cp ./etc/taotie.conf ../release/opt/loong/etc/
+#cp ./nginx-1.6.2/conf/mime.types ../release/opt/loong/etc/
+#cp ./nginx-1.6.2/conf/fastcgi.conf ../release/opt/loong/etc/
+#cp ./nginx-1.6.2/conf/fastcgi_params ../release/opt/loong/etc/
+cp ./etc/pixiu.conf ../release/opt/loong/etc/
 
 # 复制 nginx 页面文件
 cp -r ./web/ ../release/opt/loong/web/

@@ -1,0 +1,5 @@
+运行带有配置文件的命令： 
+sudo bin/bixi -m server -c etc/bixi.ini
+
+配置文件参考：
+https://github.com/facebook/hhvm/wiki/INI-Settings

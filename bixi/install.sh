@@ -4,7 +4,7 @@
 
 # 判断 hhvm 执行程序是否存在
 if [ -f "./hhvm/hphp/hhvm/hhvm" ];then
-    cp ./hhvm/hphp/hhvm/hhvm ../release/opt/loong/bin/bixi
+    cp ./hhvm/hphp/hhvm/hhvm /opt/loong/bin/bixi
 fi
 
-cp ./etc/bixi.ini ../release/opt/loong/etc/
+cp ./etc/bixi.ini /opt/loong/etc/

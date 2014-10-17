@@ -20,7 +20,7 @@ if [ ! -d "/opt/loong/log" ];then
     mkdir -p /opt/loong/log
 fi
 if [ ! -d "/opt/loong/var" ];then
-    mkdir -p /opt/loong/var
+    mkdir -p /opt/loong/var/run
 fi
 
 # 安装 nginx 执行文件到 bin目录并重命名为 taotie
@@ -32,5 +32,8 @@ cp ./nginx-1.6.2/conf/fastcgi.conf /opt/loong/etc/
 cp ./nginx-1.6.2/conf/fastcgi_params /opt/loong/etc/
 cp ./etc/taotie.conf /opt/loong/etc/
 
-# 安装 nginx 页面文件
+# 安装 nginx 静态页面文件
 cp -r ./web/ /opt/loong/web/
+
+# 安装 nginx 动态页面文件
+cp -r ./php/ /opt/loong/php/

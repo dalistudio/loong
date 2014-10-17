@@ -16,7 +16,7 @@ if [ ! -d "../release/opt" ];then
     mkdir ../release/opt/loong/bin
     mkdir ../release/opt/loong/etc
     mkdir ../release/opt/loong/log
-    mkdir ../release/opt/loong/var
+    mkdir -p ../release/opt/loong/var/run
 fi
 
 # 复制 nginx 执行文件到 bin目录并重命名为 taotie
@@ -28,6 +28,9 @@ cp ./nginx-1.6.2/conf/fastcgi.conf ../release/opt/loong/etc/
 cp ./nginx-1.6.2/conf/fastcgi_params ../release/opt/loong/etc/
 cp ./etc/taotie.conf ../release/opt/loong/etc/
 
-# 复制 nginx 页面文件
+# 复制 nginx 静态页面文件
 cp -r ./web/ ../release/opt/loong/web/
+
+# 复制 nginx 动态页面文件
+cp -r ./php/ ../release/opt/loong/php/
 
