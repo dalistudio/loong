@@ -6,4 +6,16 @@
 *.so
 *.gcno
 .libs
+
+release
 down
+taotie/nginx-1.6.2
+taotie/mod
+pixiu/nginx-1.6.2
+pixiu/mod
+bixi/hhvm
+jiaotu/memcached-1.4.20
+suanni/memcached-1.4.20
+chishou/memcached-1.4.20
+chiwen/mysql-5.6.21
+
