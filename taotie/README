@@ -1,0 +1,35 @@
+taotie 饕餮
+
+版本及简介：
+1、nginx 1.6.2		Web 服务器
+2、array 0.03		给nginx配置文件添加数组变量类型
+3、echo 0.56		给nginx添加回显功能
+4、form 0.10		给nginx添加获取表单的值功能
+5、headers 0.25		给nginx添加请求头部处理功能
+6、memc 0.15		给nginx添加memcached处理功能
+7、misc 0.26		给nginx添加附加功能，如base32 base64 sha1等
+8、nck 0.2rc1		给nginx添加重写方法和远程密码功能
+9、ndk 0.2.19		nginx的模块开发套件
+10、srcache 0.28	给nginx添加子请求缓冲功能
+
+操作步骤：
+1、获得 nginx 1.6.2 稳定版源代码并解压 
+    get-nginx.sh
+
+2、修改 nginx 1.6.2 的源代码
+    edit-nginx.sh
+
+3、获得 nginx 模块的源代码并解压
+    get-mod.sh
+
+4、修改 nginx 模块的源代码
+    edit-mod.sh
+
+5、编译 nginx 
+    compile.sh
+
+6、复制相关程序及配置文件到发布目录
+    release.sh
+
+7、安装 taotie 到 /opt/loong 目录
+    install.sh
