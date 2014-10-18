@@ -22,15 +22,18 @@ fi
 if [ ! -d "/opt/loong/var" ];then
     mkdir -p /opt/loong/var
 fi
+if [ ! -d "/opt/loong/bet" ];then
+    mkdir -p /opt/loong/bet
+fi
 
-# 安装 nginx 执行文件到 bin目录并重命名为 taotie
-cp ./nginx-1.6.2/objs/nginx /opt/loong/bin/taotie
+# 安装 nginx 执行文件到 bin目录并重命名为 pixiu
+cp ./nginx-1.6.2/objs/nginx /opt/loong/bin/pixiu
 
 # 安装 nginx 相关配置文件
-cp ./nginx-1.6.2/conf/mime.types /opt/loong/etc/
-cp ./nginx-1.6.2/conf/fastcgi.conf /opt/loong/etc/
-cp ./nginx-1.6.2/conf/fastcgi_params /opt/loong/etc/
-cp ./etc/taotie.conf /opt/loong/etc/
+#cp ./nginx-1.6.2/conf/mime.types /opt/loong/etc/
+#cp ./nginx-1.6.2/conf/fastcgi.conf /opt/loong/etc/
+#cp ./nginx-1.6.2/conf/fastcgi_params /opt/loong/etc/
+cp ./etc/pixiu.conf /opt/loong/etc/
 
 # 安装 nginx 页面文件
-cp -r ./web/ /opt/loong/web/
+cp -r ./web/* /opt/loong/bet/
