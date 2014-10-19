@@ -1,5 +1,12 @@
 修改历史
 
+14-10-19 wangdali <wangdali@qq.com>
+    1、添加 一些 sh 脚本文件
+    2、修改 nginx 的 memc 模块，适应 nginx 版本的修改。
+    3、完成 taotie 的基本设置，可用于试部署
+    4、添加 一些文档
+
 14-09-27 wangdali <wangdali@qq.com>
     1、修改 nginx版本号及信息
     2、修改 nginx 的进程名称
+

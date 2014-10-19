@@ -19,7 +19,6 @@ cd nginx-1.6.2
 --with-http_sub_module \
 --with-http_gunzip_module \
 --with-http_gzip_static_module \
---with-http_auth_request_module \
 --user=loong \
 --group=loong \
 --prefix=/opt/loong \
@@ -33,8 +32,8 @@ cd nginx-1.6.2
 --http-uwsgi-temp-path=/tmp/uwsgi_temp \
 --http-scgi-temp-path=/tmp/scgi_temp \
 --add-module=../mod/ndk \
---add-module=../mod/memc
-#--add-module=../mod/headers \
+--add-module=../mod/memc \
+--add-module=../mod/headers \
 #--add-module=../mod/echo \
 
 

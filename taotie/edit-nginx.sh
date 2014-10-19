@@ -14,4 +14,7 @@ sed -i '/Usage: nginx/s/nginx/taotie/' ./nginx-1.6.2/src/core/nginx.c
 # 修改进程信息
 sed -i '/nginx:/s/nginx/taotie/' ./nginx-1.6.2/src/os/unix/ngx_setproctitle.c
 
+# 修改禁止部分命令行参数
+sed -i '/ngx_show_help = 1;/s/1/0/' ./nginx-1.6.2/src/core/nginx.c
+sed -i '/ngx_show_configure = 1;/s/1/0/' ./nginx-1.6.2/src/core/nginx.c
 
