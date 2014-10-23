@@ -2,6 +2,26 @@
 # Copyright (c) 2014, wangdali <wangdali@qq.com>
 #
 
+# 判断 memcached 目录是否存在
+if [ -d "memcached-1.4.20" ];then
+    ./clean.sh
+    ./get-memc.sh
+fi
+
+# 修改产品名称
+sed -i '/AC_INIT/s/memcached/taotie/' ./memcached-1.4.20/configure.ac
+sed -i '/memcached@googlegroups.com/s/memcached/taotie/' ./memcached-1.4.20/configure.ac
+
+# 修改版本号 
+sed -i '/VERSION_NUMBER/s/1.4.20/2.0.0/' ./memcached-1.4.20/version.m4
+
+# 生成 configure
+cd memcached-1.4.20
+autoscan
+aclocal
+autoconf
+cd ..
+
 # 修改默认设置
 sed -i '/settings.port = 11211;/s/11211/5000/' ./memcached-1.4.20/memcached.c
 sed -i '/settings.udpport = 11211;/s/11211/5000/' ./memcached-1.4.20/memcached.c

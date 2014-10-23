@@ -3,8 +3,8 @@
 #
 
 # 修改版本信息
-sed -i '/#define nginx_version/s/1006002/1000000/' ./nginx-1.6.2/src/core/nginx.h 
-sed -i '/#define NGINX_VERSION/s/1.6.2/1.0.0/' ./nginx-1.6.2/src/core/nginx.h 
+sed -i '/#define nginx_version/s/1006002/2000000/' ./nginx-1.6.2/src/core/nginx.h 
+sed -i '/#define NGINX_VERSION/s/1.6.2/2.0.0/' ./nginx-1.6.2/src/core/nginx.h 
 sed -i '/#define NGINX_VER/s/nginx/taotie/' ./nginx-1.6.2/src/core/nginx.h 
 sed -i '/#define NGINX_VAR/s/"NGINX"/"TAOTIE"/' ./nginx-1.6.2/src/core/nginx.h 
 

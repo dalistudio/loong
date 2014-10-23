@@ -11,25 +11,26 @@ fi
 
 # 创建发布相关目录
 if [ ! -d "../release/opt" ];then
-    mkdir ../release/opt
-    mkdir ../release/opt/loong
-    mkdir ../release/opt/loong/bin
-    mkdir ../release/opt/loong/etc
-    mkdir ../release/opt/loong/log
-    mkdir ../release/opt/loong/var
+    mkdir -p ../release/opt
+    mkdir -p ../release/opt/loong
+    mkdir -p ../release/opt/loong/bin
+    mkdir -p ../release/opt/loong/etc
+    mkdir -p ../release/opt/loong/log
+    mkdir -p ../release/opt/loong/var
+fi
+
+if [ ! -d "../release/opt/loong/var" ];then
+    mkdir -p ../release/opt/loong/var/pixiu
 fi
 
 if [ ! -d "../release/opt/loong/bet" ];then
-    mkdir ../release/opt/loong/bet
+    mkdir -p ../release/opt/loong/bet
 fi
 
 # 复制 nginx 执行文件到 bin目录并重命名为 pixiu
 cp ./nginx-1.6.2/objs/nginx ../release/opt/loong/bin/pixiu
 
 # 复制 nginx 相关配置文件
-#cp ./nginx-1.6.2/conf/mime.types ../release/opt/loong/etc/
-#cp ./nginx-1.6.2/conf/fastcgi.conf ../release/opt/loong/etc/
-#cp ./nginx-1.6.2/conf/fastcgi_params ../release/opt/loong/etc/
 cp ./etc/pixiu.conf ../release/opt/loong/etc/
 
 # 复制 nginx 页面文件

@@ -92,3 +92,23 @@ if [ ! -d "./mod/nck" ];then
     mv ./mod/ngx_coolkit-0.2rc1 ./mod/nck
 fi
 
+##### lua-nginx-module
+if [ ! -f "../down/lua-0.9.12.tar.gz" ];then
+    wget https://github.com/openresty/lua-nginx-module/archive/v0.9.12.tar.gz -O ../down/lua-0.9.12.tar.gz
+fi
+if [ ! -d "./mod/lua" ];then
+    tar -zxvf ../down/lua-0.9.12.tar.gz -C ./mod
+    mv ./mod/lua-nginx-module-0.9.12 ./mod/lua
+fi
+
+##### luajit
+if [ ! -f "../down/LuaJIT-2.0.3.tar.gz" ];then
+    wget http://luajit.org/download/LuaJIT-2.0.3.tar.gz -O ../down/LuaJIT-2.0.3.tar.gz
+fi
+if [ ! -d "./mod/luajit" ];then
+    tar -zxvf ../down/LuaJIT-2.0.3.tar.gz -C ./mod
+    mv ./mod/LuaJIT-2.0.3 ./mod/luajit
+fi
+
+
+

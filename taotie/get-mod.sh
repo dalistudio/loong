@@ -2,7 +2,7 @@
 # Copyright (c) 2014, wangdali <wangdali@qq.com>
 #
 
-##### 
+##### 判断目录是否存在
 if [ ! -d "../down" ];then
     mkdir ../down
 fi
