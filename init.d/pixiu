@@ -28,7 +28,7 @@ test -x $DAEMON || exit 0
 PID=$(awk -F'[ \t;]+' '/[^#]pid/ {print $2}' /opt/loong/etc/pixiu.conf)
 if [ -z "$PID" ]
 then
-	PID=/run/pixiu.pid
+	PID=/opt/loong/var/run/pixiu.pid
 fi
 
 # Check if the ULIMIT is set in /etc/default/pixiu

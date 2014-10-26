@@ -28,7 +28,7 @@ test -x $DAEMON || exit 0
 PID=$(awk -F'[ \t;]+' '/[^#]pid/ {print $2}' /opt/loong/etc/taotie.conf)
 if [ -z "$PID" ]
 then
-	PID=/run/taotie.pid
+	PID=/opt/loong/var/run/taotie.pid
 fi
 
 # Check if the ULIMIT is set in /etc/default/taotie

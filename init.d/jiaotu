@@ -1,22 +1,23 @@
 #!/bin/bash
-
-### BEGIN INIT INFO
+# Copyright (c) 2014, wangdali <wangdali@qq.com>
 #
-# Provides:	 	jiaotu
-# Required-Start:	$local_fs  $remote_fs
-# Required-Stop:	$local_fs  $remote_fs
-# Default-Start: 	2 3 4 5
-# Default-Stop: 	0 1 6
-# Short-Description:	The is jiaotu memory cache server daemon
-# Description: 	椒图内存缓存服务器，用于共享会话信息。请将这个脚本放在 /etc/init.d 目录中。
-#
-### END INIT INFO
 
-## 填写程序名称和路径等
-PROG="jiaotu" ## 服务程序的名称
+###
+#
+# 椒图内存缓冲服务器
+# 用于缓存静态文件
+#
+# 请将这个脚本放在 /etc/init.d 目录中
+#
+###
+
+PROG="jiaotu" ## 程序名称
+PROG_IP="127.0.0.1" ## 地址
+PROG_PORT="6000" ## 端口
+PROG_USER="loong" ## 用户名
 PROG_PATH="/opt/loong/bin" ## 服务程序的路径，非必要，但有时会有帮助。
-PROG_ARGS="" ## 服务程序的执行参数
-PID_PATH="/opt/loong/var/run/" # 服务程序的PID路径
+PID_PATH="/opt/loong/var/run" # 服务程序的PID路径
+PROG_ARGS="-d" ## 服务程序的其他参数
 
 # 启动服务
 start() {
@@ -26,11 +27,9 @@ start() {
         exit 1
     else
 	## 如果你想保存输出，修改 /dev/null 像 /var/log/$PROG 这样。
-        $PROG_PATH/$PROG $PROG_ARGS 2>&1 >/var/log/$PROG &
-	$pid=`ps ax | grep -i 'jiaotu' | sed 's/^\([0-9]\{1,\}\).*/\1/g' | head -n 1`
+        $PROG_PATH/$PROG -l $PROG_IP -p $PROG_PORT -u $PROG_USER -P $PID_PATH/$PROG.pid $PROG_ARGS 2>&1 >/dev/null &
 
         echo "$PROG started"
-        echo $pid > "$PID_PATH/$PROG.pid"
     fi
 }
 
@@ -39,7 +38,7 @@ stop() {
     echo "begin stop"
     if [ -e "$PID_PATH/$PROG.pid" ]; then
         ## 程序运行，所以停止它。
-	pid=`ps ax | grep -i 'jiaotu' | sed 's/^\([0-9]\{1,\}\).*/\1/g' | head -n 1`
+	pid=$(sed -n 1p $PID_PATH/$PROG.pid)
 	kill $pid
         
         rm -f  "$PID_PATH/$PROG.pid"
