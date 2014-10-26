@@ -1,0 +1,80 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+#
+# Provides:	 	suanni
+# Required-Start:	$local_fs  $remote_fs
+# Required-Stop:	$local_fs  $remote_fs
+# Default-Start: 	2 3 4 5
+# Default-Stop: 	0 1 6
+# Short-Description:	The is suanni memory cache server daemon
+# Description: 	狻猊内存缓存服务器，用于缓冲静态文件。请将这个脚本放在 /etc/init.d 目录中。
+#
+### END INIT INFO
+
+## 填写程序名称和路径等
+PROG="suanni" ## 服务程序的名称
+PROG_PATH="/opt/loong/bin" ## 服务程序的路径，非必要，但有时会有帮助。
+PROG_ARGS="" ## 服务程序的执行参数
+PID_PATH="/opt/loong/var/run/" # 服务程序的PID路径
+
+# 启动服务
+start() {
+    if [ -e "$PID_PATH/$PROG.pid" ]; then
+        ## 程序运行错误，退出。
+        echo "Error! $PROG is currently running!" 1>&2
+        exit 1
+    else
+	## 如果你想保存输出，修改 /dev/null 像 /var/log/$PROG 这样。
+        $PROG_PATH/$PROG $PROG_ARGS 2>&1 >/var/log/$PROG &
+	$pid=`ps ax | grep -i 'suanni' | sed 's/^\([0-9]\{1,\}\).*/\1/g' | head -n 1`
+
+        echo "$PROG started"
+        echo $pid > "$PID_PATH/$PROG.pid"
+    fi
+}
+
+# 停止服务
+stop() {
+    echo "begin stop"
+    if [ -e "$PID_PATH/$PROG.pid" ]; then
+        ## 程序运行，所以停止它。
+	pid=`ps ax | grep -i 'suanni' | sed 's/^\([0-9]\{1,\}\).*/\1/g' | head -n 1`
+	kill $pid
+        
+        rm -f  "$PID_PATH/$PROG.pid"
+        echo "$PROG stopped"
+    else
+        ## 程序没有运行，出错退出。
+        echo "Error! $PROG not started!" 1>&2
+        exit 1
+    fi
+}
+
+## 首先检查这个脚本是否以 root 权限运行。
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run as root" 1>&2
+    exit 1
+fi
+
+# 检查脚本调用参数，并处理
+case "$1" in
+    start)
+        start
+        exit 0
+    ;;
+    stop)
+        stop
+        exit 0
+    ;;
+    reload|restart|force-reload)
+        stop
+        start
+        exit 0
+    ;;
+    **)
+        echo "Usage: $0 {start|stop|reload}" 1>&2
+        exit 1
+    ;;
+esac
+
