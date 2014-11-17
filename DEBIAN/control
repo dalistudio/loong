@@ -1,0 +1,15 @@
+Package: loong
+Source: empathy
+Version: 2.0.0
+Architecture: amd64
+Maintainer: Dali Wang <wangdali@qq.com>
+Installed-Size: 128M
+Depends: 
+Breaks: 
+Replaces: 
+Section: gnome
+Priority: optional
+Homepage: http://dalistudio.net
+Description: loong web server
+
+

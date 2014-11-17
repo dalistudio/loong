@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# 删除用户组
+groupdel nobody
+groupdel loong
+
+# 添加用户组
+groupadd nobody
+groupadd loong
+
+# 自动启动段开始
+if [ -x "/etc/init.d/taotie" ]; then
+	chmod +x /etc/init.d/taotie
+	update-rc.d taotie defaults >/dev/null
+fi
+
+if [ -x "/etc/init.d/bixi" ]; then
+	chmod +x /etc/init.d/bixi
+	update-rc.d bixi defaults >/dev/null
+fi
+
+if [ -x "/etc/init.d/suanni" ]; then
+	chmod +x /etc/init.d/suanni
+	update-rc.d suanni defaults >/dev/null
+fi
+
+if [ -x "/etc/init.d/jiaotu" ]; then
+	chmod +x /etc/init.d/jiaotu
+	update-rc.d jiaotu defaults >/dev/null
+fi
+
+if [ -x "/etc/init.d/pixiu" ]; then
+	chmod +x /etc/init.d/pixiu
+	update-rc.d pixiu defaults >/dev/null
+fi
+
+if [ -x "/etc/init.d/chishou" ]; then
+	chmod +x /etc/init.d/chishou
+	update-rc.d chishou defaults >/dev/null
+fi
+# 自动启动段结束
