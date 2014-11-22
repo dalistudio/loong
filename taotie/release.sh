@@ -64,11 +64,9 @@ cp ./etc/taotie.conf $RELEASE_DIR/opt/loong/etc/
 chown -R loong:loong $RELEASE_DIR/opt/loong/etc/*
 
 # 复制 nginx 静态页面文件
-cp -r ./html/* $RELEASE_DIR/opt/loong/taotie
+cp -r ./web/* $RELEASE_DIR/opt/loong/taotie
 chown -R loong:loong $RELEASE_DIR/opt/loong/taotie/*
 
-# 复制 bixi 动态页面文件
-cp -r ./php/* $RELEASE_DIR/opt/loong/bixi
-chown -R loong:loong $RELEASE_DIR/opt/loong/bixi/*
+
 
 

@@ -1,0 +1,29 @@
+编译步骤： 
+
+1、更新操作系统
+$ sudo apt-get update
+$ sudo apt-get upgrade
+
+2、安装需要的软件包
+$ sudo apt-get install autoconf automake binutils-dev build-essential cmake g++ git \
+  libboost-dev libboost-filesystem-dev libboost-program-options-dev libboost-regex-dev \
+  libboost-system-dev libboost-thread-dev libbz2-dev libc-client-dev libldap2-dev \
+  libc-client2007e-dev libcap-dev libcurl4-openssl-dev libdwarf-dev libelf-dev \
+  libexpat-dev libgd2-xpm-dev libgoogle-glog-dev libgoogle-perftools-dev libicu-dev \
+  libjemalloc-dev libmcrypt-dev libmemcached-dev libmysqlclient-dev libncurses-dev \
+  libonig-dev libpcre3-dev libreadline-dev libtbb-dev libtool libxml2-dev zlib1g-dev \
+  libevent-dev libmagickwand-dev libinotifytools0-dev libiconv-hook-dev libedit-dev \
+  libiberty-dev libxslt1-dev ocaml-native-compilers libsqlite3-dev libyaml-dev libgmp3-dev
+
+3、下载 HHVM 源代码
+$ git clone git://github.com/facebook/hhvm.git --depth=1
+$ cd hhvm
+$ git submodule update --init --recursive
+$ cd .
+
+4、编译代码
+$ cd hhvm
+$ cmake .
+$ make -j [number_of_processor_cores] # eg. make -j 4
+$ sudo make install
+

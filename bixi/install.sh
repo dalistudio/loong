@@ -8,3 +8,7 @@ if [ -f "./hhvm/hphp/hhvm/hhvm" ];then
 fi
 
 cp ./etc/bixi.ini /opt/loong/etc/
+
+# 复制 bixi 动态页面文件
+cp -r ./web/* /opt/loong/bixi
+chown -R loong:loong /opt/loong/bixi/*

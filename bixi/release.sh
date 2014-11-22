@@ -10,3 +10,7 @@ if [ -f "./hhvm/hphp/hhvm/hhvm" ];then
 fi
 
 cp ./etc/bixi.ini ../release/opt/loong/etc/
+
+# 复制 bixi 动态页面文件
+cp -r ./web/* ../release/opt/loong/bixi
+chown -R loong:loong ../release/opt/loong/bixi/*

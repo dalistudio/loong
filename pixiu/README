@@ -11,6 +11,8 @@ pixiu 貔貅
 8、nck 0.2rc1		给nginx添加重写方法和远程密码功能
 9、ndk 0.2.19		nginx的模块开发套件
 10、srcache 0.28	给nginx添加子请求缓冲功能
+11、luajit 2.0.3	给nginx添加lua脚本处理功能，需要libluajit.so库
+具体包含那些模块，查看compile.sh脚本
 
 操作步骤：
 1、获得 nginx 1.6.2 稳定版源代码并解压 

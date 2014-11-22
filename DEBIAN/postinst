@@ -1,12 +1,14 @@
 #!/bin/sh
+# 安装后执行
+
+# 添加用户
+useradd loong
 
 # 删除用户组
 groupdel nobody
-groupdel loong
 
 # 添加用户组
 groupadd nobody
-groupadd loong
 
 # 自动启动段开始
 if [ -x "/etc/init.d/taotie" ]; then

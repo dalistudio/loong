@@ -57,8 +57,6 @@ chown -R loong:loong $INSTALL_DIR/etc/*
 cp -r ./html/* $INSTALL_DIR/taotie
 chown -R loong:loong $INSTALL_DIR/taotie/*
 
-# 复制 bixi 动态页面文件
-cp -r ./php/* $INSTALL_DIR/bixi
-chown -R loong:loong $INSTALL_DIR/bixi/*
+
 
 

@@ -1,0 +1,4 @@
+椒图 
+
+jiaotu 即 memcached 内存缓冲服务器，主要用于缓存Session会话信息。
+

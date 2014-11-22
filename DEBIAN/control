@@ -3,13 +3,20 @@ Source: empathy
 Version: 2.0.0
 Architecture: amd64
 Maintainer: Dali Wang <wangdali@qq.com>
-Installed-Size: 128M
+Installed-Size: 131072
 Depends: 
 Breaks: 
 Replaces: 
-Section: gnome
+Section: admin
 Priority: optional
 Homepage: http://dalistudio.net
 Description: loong web server
+ The system includes:
+    * TaoToe Web Server
+    * BiXi Script Server
+    * SuanNi Cache Server
+    * JiaoTu Session Server
+    * PiXiu Application Server
+    * ChiShou Pools Server
 
 
