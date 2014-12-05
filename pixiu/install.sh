@@ -2,6 +2,8 @@
 # Copyright (c) 2014, wangdali <wangdali@qq.com>
 #
 
+echo "Install PiXiu Starting..."
+
 # 声明变量
 INSTALL_DIR="/opt/loong"
 
@@ -45,4 +47,5 @@ chown -R loong:loong $INSTALL_DIR/etc/*
 cp -r ./web/* $INSTALL_DIR/pixiu/
 chown -R loong:loong $INSTALL_DIR/pixiu/*
 
+echo "Install PiXiu End"
 

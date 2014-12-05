@@ -31,12 +31,12 @@ cd nginx-1.6.2
 --http-fastcgi-temp-path=/tmp/fastcgi_temp \
 --http-uwsgi-temp-path=/tmp/uwsgi_temp \
 --http-scgi-temp-path=/tmp/scgi_temp \
---add-module=../mod/ndk \
---add-module=../mod/memc \
---add-module=../mod/headers \
---add-module=../mod/echo \
---add-module=../mod/srcache \
---add-module=../mod/misc
+#--add-module=../mod/ndk \
+#--add-module=../mod/memc \
+#--add-module=../mod/headers \
+#--add-module=../mod/echo \
+#--add-module=../mod/srcache \
+#--add-module=../mod/misc
 
 
 # 目前不需要启用 SSL 模块

@@ -2,6 +2,8 @@
 # Copyright (c) 2014, wangdali <wangdali@qq.com>
 #
 
+echo "Release PiXiu Starting..."
+
 # 声明变量
 RELEASE_DIR="../release"
 
@@ -42,3 +44,4 @@ chown -R loong:loong $RELEASE_DIR/opt/loong/etc/*
 cp -r ./web/* $RELEASE_DIR/opt/loong/pixiu/
 chown -R loong:loong $RELEASE_DIR/opt/loong/pixiu/*
 
+echo "Release PiXiu End"

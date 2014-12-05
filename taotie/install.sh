@@ -2,6 +2,8 @@
 # Copyright (c) 2014, wangdali <wangdali@qq.com>
 #
 
+echo "Install TaoTie Starting..."
+
 # 声明变量
 INSTALL_DIR="/opt/loong"
 
@@ -31,17 +33,23 @@ if [ ! -d $INSTALL_DIR/var/run ];then
     mkdir -p $INSTALL_DIR/var/run
 fi
 
-# 创建项目的页面目录
-if [ ! -d $INSTALL_DIR/taotie ];then
-    mkdir -p $INSTALL_DIR/taotie
-    chown loong:loong $INSTALL_DIR/taotie
+# 创建项目的网站目录
+if [ ! -d $RELEASE_DIR/opt/loong/web/taotie ];then
+    mkdir -p $RELEASE_DIR/opt/loong/web/taotie
+    chown -R loong:loong $RELEASE_DIR/opt/loong/web
 fi
 
-# 创建项目的动态页面目录
-if [ ! -d $INSTALL_DIR/bixi ];then
-    mkdir -p $INSTALL_DIR/bixi
-    chown loong:loong $INSTALL_DIR/bixi
-fi
+## 创建项目的页面目录
+#if [ ! -d $INSTALL_DIR/taotie ];then
+#    mkdir -p $INSTALL_DIR/taotie
+#    chown loong:loong $INSTALL_DIR/taotie
+#fi
+
+## 创建项目的动态页面目录
+#if [ ! -d $INSTALL_DIR/bixi ];then
+#    mkdir -p $INSTALL_DIR/bixi
+#    chown loong:loong $INSTALL_DIR/bixi
+#fi
 
 # 安装 nginx 执行文件到 bin目录并重命名为 taotie
 cp ./nginx-1.6.2/objs/nginx $INSTALL_DIR/bin/taotie
@@ -51,12 +59,13 @@ cp ./nginx-1.6.2/conf/mime.types $INSTALL_DIR/etc/
 cp ./nginx-1.6.2/conf/fastcgi.conf $INSTALL_DIR/etc/
 cp ./nginx-1.6.2/conf/fastcgi_params $INSTALL_DIR/etc/
 cp ./etc/taotie.conf $INSTALL_DIR/etc/
+cp -r ./etc/vhost/ $INSTALL_DIR/etc/
 chown -R loong:loong $INSTALL_DIR/etc/*
 
-# 安装 nginx 静态页面文件
-cp -r ./html/* $INSTALL_DIR/taotie
-chown -R loong:loong $INSTALL_DIR/taotie/*
+# 安装 nginx 页面文件
+cp -r ./html/* $INSTALL_DIR/web/taotie
+chown -R loong:loong $INSTALL_DIR/web
 
-
+echo "Install TaoTie End"
 
 
