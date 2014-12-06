@@ -17,6 +17,7 @@
 
 /**
  * Loader Class
+ * 类加载器
  *
  * Loads views and files
  *
@@ -118,6 +119,7 @@ class CI_Loader {
 
 	/**
 	 * Constructor
+	 * 构造函数
 	 *
 	 * Sets the path to the view files and gets the initial output buffering level
 	 */
@@ -136,6 +138,7 @@ class CI_Loader {
 
 	/**
 	 * Initialize the Loader
+	 * 初始化加载器
 	 *
 	 * This method is called once in CI_Controller.
 	 *
@@ -158,6 +161,7 @@ class CI_Loader {
 
 	/**
 	 * Is Loaded
+	 * 是否已加载
 	 *
 	 * A utility function to test if a class is in the self::$_ci_classes array.
 	 * This function returns the object name if the class tested for is loaded,
@@ -182,6 +186,7 @@ class CI_Loader {
 
 	/**
 	 * Class Loader
+	 * 类加载器 - 库类
 	 *
 	 * This function lets users load and instantiate classes.
 	 * It is designed to be called from a user's app controllers.
@@ -220,6 +225,7 @@ class CI_Loader {
 
 	/**
 	 * Model Loader
+	 * 数据模型加载器
 	 *
 	 * This function lets users load and instantiate models.
 	 *
@@ -314,6 +320,7 @@ class CI_Loader {
 
 	/**
 	 * Database Loader
+	 * 数据库加载器
 	 *
 	 * @param	string	the DB credentials
 	 * @param	bool	whether to return the DB object
@@ -350,6 +357,7 @@ class CI_Loader {
 
 	/**
 	 * Load the Utilities Class
+	 * 加载数据库工具类
 	 *
 	 * @return	string
 	 */
@@ -400,6 +408,7 @@ class CI_Loader {
 
 	/**
 	 * Load View
+	 * 加载视图
 	 *
 	 * This function is used to load a "view" file.  It has three parameters:
 	 *
@@ -423,6 +432,7 @@ class CI_Loader {
 
 	/**
 	 * Load File
+	 * 加载文件
 	 *
 	 * This is a generic file loader
 	 *
@@ -439,6 +449,7 @@ class CI_Loader {
 
 	/**
 	 * Set Variables
+	 * 设置变量
 	 *
 	 * Once variables are set they become available within
 	 * the controller class and its "view" files.
@@ -469,6 +480,7 @@ class CI_Loader {
 
 	/**
 	 * Get Variable
+	 * 获得变量
 	 *
 	 * Check if a variable is set and retrieve it.
 	 *
@@ -484,6 +496,7 @@ class CI_Loader {
 
 	/**
 	 * Load Helper
+	 * 加载辅助类
 	 *
 	 * This function loads the specified helper file.
 	 *
@@ -560,6 +573,7 @@ class CI_Loader {
 
 	/**
 	 * Loads a language file
+	 * 加载语言文件
 	 *
 	 * @param	array
 	 * @param	string
@@ -584,6 +598,7 @@ class CI_Loader {
 
 	/**
 	 * Loads a config file
+	 * 加载配置文件
 	 *
 	 * @param	string
 	 * @param	bool
@@ -600,6 +615,7 @@ class CI_Loader {
 
 	/**
 	 * Driver
+	 * 加载驱动库
 	 *
 	 * Loads a driver library
 	 *
@@ -635,6 +651,7 @@ class CI_Loader {
 
 	/**
 	 * Add Package Path
+	 * 添加封装路径
 	 *
 	 * Prepends a parent path to the library, model, helper, and config path arrays
 	 *
@@ -661,6 +678,7 @@ class CI_Loader {
 
 	/**
 	 * Get Package Paths
+	 * 获得封装路径
 	 *
 	 * Return a list of all package paths, by default it will ignore BASEPATH.
 	 *
@@ -676,6 +694,7 @@ class CI_Loader {
 
 	/**
 	 * Remove Package Path
+	 * 移除封装路径
 	 *
 	 * Remove a path from the library, model, and helper path arrays if it exists
 	 * If no path is provided, the most recently added path is removed.
@@ -730,6 +749,7 @@ class CI_Loader {
 
 	/**
 	 * Loader
+	 * 加载器
 	 *
 	 * This function is used to load views and files.
 	 * Variables are prefixed with _ci_ to avoid symbol collision with
@@ -868,6 +888,7 @@ class CI_Loader {
 
 	/**
 	 * Load class
+	 * 类加载器
 	 *
 	 * This function loads the requested class.
 	 *
@@ -997,6 +1018,7 @@ class CI_Loader {
 
 	/**
 	 * Instantiates a class
+	 * 实例化一个类
 	 *
 	 * @param	string
 	 * @param	string
@@ -1104,6 +1126,7 @@ class CI_Loader {
 
 	/**
 	 * Autoloader
+	 * 自动加载
 	 *
 	 * The config/autoload.php file contains an array that permits sub-systems,
 	 * libraries, and helpers to be loaded automatically.
@@ -1190,6 +1213,7 @@ class CI_Loader {
 
 	/**
 	 * Object to Array
+	 * 对象到数组
 	 *
 	 * Takes an object as input and converts the class variables to array key/vals
 	 *

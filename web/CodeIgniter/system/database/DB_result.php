@@ -17,6 +17,7 @@
 
 /**
  * Database Result Class
+ * 数据库结果类
  *
  * This is the platform-independent result class.
  * This class will not be called directly. Rather, the adapter

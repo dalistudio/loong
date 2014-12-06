@@ -17,6 +17,7 @@
 
 /**
  * CodeIgniter Application Controller Class
+ * 控制器基类
  *
  * This class object is the super class that every library in
  * CodeIgniter will be assigned to.
@@ -33,6 +34,7 @@ class CI_Controller {
 
 	/**
 	 * Constructor
+	 * 构造函数
 	 */
 	public function __construct()
 	{
@@ -43,16 +45,17 @@ class CI_Controller {
 		// so that CI can run as one big super object.
 		foreach (is_loaded() as $var => $class)
 		{
-			$this->$var =& load_class($class);
+			$this->$var =& load_class($class); // 加载类
 		}
 
-		$this->load =& load_class('Loader', 'core');
+		$this->load =& load_class('Loader', 'core'); // 加载加载类
 
-		$this->load->initialize();
+		$this->load->initialize(); // 初始化加载加载类
 		
 		log_message('debug', "Controller Class Initialized");
 	}
 
+	// 获得实例化句柄
 	public static function &get_instance()
 	{
 		return self::$instance;

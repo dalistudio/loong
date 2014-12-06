@@ -17,6 +17,7 @@
 
 /**
  * Initialize the database
+ * 初始化数据库
  *
  * @category	Database
  * @author		ExpressionEngine Dev Team

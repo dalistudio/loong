@@ -17,6 +17,7 @@
 
 /**
  * Exceptions Class
+ * 意外处理类
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -63,6 +64,7 @@ class CI_Exceptions {
 
 	/**
 	 * Constructor
+	 * 构造函数
 	 */
 	public function __construct()
 	{
@@ -74,6 +76,7 @@ class CI_Exceptions {
 
 	/**
 	 * Exception Logger
+	 * 意外处理日志
 	 *
 	 * This function logs PHP generated error messages
 	 *
@@ -95,6 +98,7 @@ class CI_Exceptions {
 
 	/**
 	 * 404 Page Not Found Handler
+	 * 404 页面没有找到处理器
 	 *
 	 * @access	private
 	 * @param	string	the page
@@ -103,8 +107,8 @@ class CI_Exceptions {
 	 */
 	function show_404($page = '', $log_error = TRUE)
 	{
-		$heading = "404 Page Not Found";
-		$message = "The page you requested was not found.";
+		$heading = "404 Page Not Found"; // 头
+		$message = "The page you requested was not found."; // 消息
 
 		// By default we log this, but allow a dev to skip it
 		if ($log_error)
@@ -120,6 +124,7 @@ class CI_Exceptions {
 
 	/**
 	 * General Error Page
+	 * 通用错误页面
 	 *
 	 * This function takes an error message as input
 	 * (either as a string or an array) and displays

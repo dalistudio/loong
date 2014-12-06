@@ -17,6 +17,7 @@
 
 /**
  * Database Utility Class
+ * 数据库工具类
  *
  * @category	Database
  * @author		ExpressionEngine Dev Team

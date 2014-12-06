@@ -3,6 +3,7 @@
 /*
 |--------------------------------------------------------------------------
 | File and Directory Modes
+| 文件和目录的模式
 |--------------------------------------------------------------------------
 |
 | These prefs are used when checking and setting modes when working
@@ -13,14 +14,15 @@
 | always be used to set the mode correctly.
 |
 */
-define('FILE_READ_MODE', 0644);
-define('FILE_WRITE_MODE', 0666);
-define('DIR_READ_MODE', 0755);
-define('DIR_WRITE_MODE', 0777);
+define('FILE_READ_MODE', 0644);  // 可读文件权限
+define('FILE_WRITE_MODE', 0666); // 可写文件权限
+define('DIR_READ_MODE', 0755);   // 可读目录权限
+define('DIR_WRITE_MODE', 0777);  // 可写目录权限
 
 /*
 |--------------------------------------------------------------------------
 | File Stream Modes
+| 文件流的模式
 |--------------------------------------------------------------------------
 |
 | These modes are used when working with fopen()/popen()

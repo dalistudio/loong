@@ -17,6 +17,7 @@
 
 /**
  * Database Driver Class
+ * 数据库驱动类
  *
  * This is the platform-independent base DB implementation class.
  * This class will not be called directly. Rather, the adapter

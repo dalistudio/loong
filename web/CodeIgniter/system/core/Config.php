@@ -17,8 +17,10 @@
 
 /**
  * CodeIgniter Config Class
+ * 配置文件类
  *
  * This class contains functions that enable config files to be managed
+ * 这个类包含的函数，用于管理配置文件
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -30,6 +32,7 @@ class CI_Config {
 
 	/**
 	 * List of all loaded config values
+	 * 加载所有的配置值到链表
 	 *
 	 * @var array
 	 */
@@ -49,6 +52,7 @@ class CI_Config {
 
 	/**
 	 * Constructor
+	 * 构造函数
 	 *
 	 * Sets the $config data from the primary config.php file as a class variable
 	 *
@@ -60,13 +64,13 @@ class CI_Config {
 	 */
 	function __construct()
 	{
-		$this->config =& get_config();
+		$this->config =& get_config(); // 获得配置文件
 		log_message('debug', "Config Class Initialized");
 
 		// Set the base_url automatically if none was provided
 		if ($this->config['base_url'] == '')
 		{
-			if (isset($_SERVER['HTTP_HOST']))
+			if (isset($_SERVER['HTTP_HOST'])) // 判断是否为空
 			{
 				$base_url = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
 				$base_url .= '://'. $_SERVER['HTTP_HOST'];
@@ -86,6 +90,7 @@ class CI_Config {
 
 	/**
 	 * Load Config File
+	 * 加载配置文件
 	 *
 	 * @access	public
 	 * @param	string	the config file name

@@ -17,8 +17,10 @@
 
 /**
  * Router Class
+ * 路由类
  *
  * Parses URIs and determines routing
+ * 处理 URI 和决定路由
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -30,6 +32,7 @@ class CI_Router {
 
 	/**
 	 * Config class
+	 * 配置类
 	 *
 	 * @var object
 	 * @access public
@@ -37,6 +40,7 @@ class CI_Router {
 	var $config;
 	/**
 	 * List of routes
+	 * 路由列表
 	 *
 	 * @var array
 	 * @access public
@@ -44,6 +48,7 @@ class CI_Router {
 	var $routes			= array();
 	/**
 	 * List of error routes
+	 * 错误路由列表
 	 *
 	 * @var array
 	 * @access public
@@ -51,6 +56,7 @@ class CI_Router {
 	var $error_routes	= array();
 	/**
 	 * Current class name
+	 * 当前类名
 	 *
 	 * @var string
 	 * @access public
@@ -58,6 +64,7 @@ class CI_Router {
 	var $class			= '';
 	/**
 	 * Current method name
+	 * 当前方法名
 	 *
 	 * @var string
 	 * @access public
@@ -72,6 +79,7 @@ class CI_Router {
 	var $directory		= '';
 	/**
 	 * Default controller (and method if specific)
+	 * 默认控制器
 	 *
 	 * @var string
 	 * @access public
@@ -80,20 +88,23 @@ class CI_Router {
 
 	/**
 	 * Constructor
+	 * 构造器
 	 *
 	 * Runs the route mapping function.
+	 * 运行路由映射函数
 	 */
 	function __construct()
 	{
-		$this->config =& load_class('Config', 'core');
-		$this->uri =& load_class('URI', 'core');
-		log_message('debug', "Router Class Initialized");
+		$this->config =& load_class('Config', 'core'); // 加载配置文件
+		$this->uri =& load_class('URI', 'core'); // 加载URI类
+		log_message('debug', "Router Class Initialized"); // 打印日志信息
 	}
 
 	// --------------------------------------------------------------------
 
 	/**
 	 * Set the route mapping
+	 * 设置路由映射
 	 *
 	 * This function determines what should be served based on the URI request,
 	 * as well as any "routes" that have been set in the routing config file.
@@ -109,33 +120,34 @@ class CI_Router {
 		$segments = array();
 		if ($this->config->item('enable_query_strings') === TRUE AND isset($_GET[$this->config->item('controller_trigger')]))
 		{
-			if (isset($_GET[$this->config->item('directory_trigger')]))
+			if (isset($_GET[$this->config->item('directory_trigger')])) // 目录触发器
 			{
 				$this->set_directory(trim($this->uri->_filter_uri($_GET[$this->config->item('directory_trigger')])));
-				$segments[] = $this->fetch_directory();
+				$segments[] = $this->fetch_directory(); // 取得目录
 			}
 
-			if (isset($_GET[$this->config->item('controller_trigger')]))
+			if (isset($_GET[$this->config->item('controller_trigger')])) // 控制器触发器
 			{
 				$this->set_class(trim($this->uri->_filter_uri($_GET[$this->config->item('controller_trigger')])));
-				$segments[] = $this->fetch_class();
+				$segments[] = $this->fetch_class(); // 取得类
 			}
 
-			if (isset($_GET[$this->config->item('function_trigger')]))
+			if (isset($_GET[$this->config->item('function_trigger')])) // 函数触发器
 			{
 				$this->set_method(trim($this->uri->_filter_uri($_GET[$this->config->item('function_trigger')])));
-				$segments[] = $this->fetch_method();
+				$segments[] = $this->fetch_method(); // 取得方法
 			}
 		}
 
 		// Load the routes.php file.
+		// 加载 routes.php 应用的路由文件
 		if (defined('ENVIRONMENT') AND is_file(APPPATH.'config/'.ENVIRONMENT.'/routes.php'))
 		{
-			include(APPPATH.'config/'.ENVIRONMENT.'/routes.php');
+			include(APPPATH.'config/'.ENVIRONMENT.'/routes.php'); // 加载应用环境的路由文件
 		}
 		elseif (is_file(APPPATH.'config/routes.php'))
 		{
-			include(APPPATH.'config/routes.php');
+			include(APPPATH.'config/routes.php'); // 加载应用的路由文件
 		}
 
 		$this->routes = ( ! isset($route) OR ! is_array($route)) ? array() : $route;
@@ -143,33 +155,41 @@ class CI_Router {
 
 		// Set the default controller so we can display it in the event
 		// the URI doesn't correlated to a valid controller.
+		// 设置默认控制器，所以显示它在事件，URI不能关联到一个无效的控制器
 		$this->default_controller = ( ! isset($this->routes['default_controller']) OR $this->routes['default_controller'] == '') ? FALSE : strtolower($this->routes['default_controller']);
 
 		// Were there any query string segments?  If so, we'll validate them and bail out since we're done.
+		// 有任何查询字符串段？如果是这样的话，我们将验证和保释外出，因为我们做的。
 		if (count($segments) > 0)
 		{
-			return $this->_validate_request($segments);
+			return $this->_validate_request($segments); // 验证请求
 		}
 
 		// Fetch the complete URI string
+		// 取得完整 URI 字符串
 		$this->uri->_fetch_uri_string();
 
 		// Is there a URI string? If not, the default controller specified in the "routes" file will be shown.
+		// 是否有一个 URI 字符串？如果没有，则默认控制器在 "routes" 文件指定，将显示。
 		if ($this->uri->uri_string == '')
 		{
-			return $this->_set_default_controller();
+			return $this->_set_default_controller(); // 设置默认控制器
 		}
 
 		// Do we need to remove the URL suffix?
+		// 我们需要删除URL的后缀吗？
 		$this->uri->_remove_url_suffix();
 
 		// Compile the segments into an array
+		// 编译段到数组
 		$this->uri->_explode_segments();
 
 		// Parse any custom routing that may exist
+		// 可能存在，处理当前路由
 		$this->_parse_routes();
 
 		// Re-index the segment array so that it starts with 1 rather than 0
+		// 重新引索段数组，他们开始于1，而不是0
 		$this->uri->_reindex_segments();
 	}
 
@@ -177,6 +197,7 @@ class CI_Router {
 
 	/**
 	 * Set the default controller
+	 * 设置默认控制器
 	 *
 	 * @access	private
 	 * @return	void
@@ -213,6 +234,7 @@ class CI_Router {
 
 	/**
 	 * Set the Route
+	 * 设置路由
 	 *
 	 * This function takes an array of URI segments as
 	 * input, and sets the current class/method
@@ -224,25 +246,26 @@ class CI_Router {
 	 */
 	function _set_request($segments = array())
 	{
-		$segments = $this->_validate_request($segments);
+		$segments = $this->_validate_request($segments); // 验证请求
 
 		if (count($segments) == 0)
 		{
-			return $this->_set_default_controller();
+			return $this->_set_default_controller(); // 设置默认控制器
 		}
 
-		$this->set_class($segments[0]);
+		$this->set_class($segments[0]); // 设置类
 
 		if (isset($segments[1]))
 		{
 			// A standard method request
-			$this->set_method($segments[1]);
+			// 一个标准方法请求
+			$this->set_method($segments[1]); // 设置方法
 		}
 		else
 		{
 			// This lets the "routed" segment array identify that the default
 			// index method is being used.
-			$segments[1] = 'index';
+			$segments[1] = 'index'; // 默认方法名
 		}
 
 		// Update our "routed" segment array to contain the segments.
@@ -256,6 +279,7 @@ class CI_Router {
 	/**
 	 * Validates the supplied segments.  Attempts to determine the path to
 	 * the controller.
+	 * 验证所提供的段，并确定控制器路径
 	 *
 	 * @access	private
 	 * @param	array
@@ -269,21 +293,25 @@ class CI_Router {
 		}
 
 		// Does the requested controller exist in the root folder?
+		// 请求的控制器是否存在与根目录？
 		if (file_exists(APPPATH.'controllers/'.$segments[0].'.php'))
 		{
 			return $segments;
 		}
 
 		// Is the controller in a sub-folder?
+		// 控制器是否在子目录下？
 		if (is_dir(APPPATH.'controllers/'.$segments[0]))
 		{
 			// Set the directory and remove it from the segment array
+			// 设置目录并从字段数组中移除
 			$this->set_directory($segments[0]);
 			$segments = array_slice($segments, 1);
 
 			if (count($segments) > 0)
 			{
 				// Does the requested controller exist in the sub-folder?
+				// 需要的控制器是否存在于子目录下？
 				if ( ! file_exists(APPPATH.'controllers/'.$this->fetch_directory().$segments[0].'.php'))
 				{
 					if ( ! empty($this->routes['404_override']))
@@ -298,7 +326,7 @@ class CI_Router {
 					}
 					else
 					{
-						show_404($this->fetch_directory().$segments[0]);
+						show_404($this->fetch_directory().$segments[0]); // 返回 404 未找到
 					}
 				}
 			}
@@ -352,6 +380,7 @@ class CI_Router {
 
 	/**
 	 *  Parse Routes
+	 *  处理路由
 	 *
 	 * This function matches any routes that may exist in
 	 * the config/routes.php file against the URI to
@@ -399,6 +428,7 @@ class CI_Router {
 
 	/**
 	 * Set the class name
+	 * 设置类名
 	 *
 	 * @access	public
 	 * @param	string
@@ -413,6 +443,7 @@ class CI_Router {
 
 	/**
 	 * Fetch the current class
+	 * 取得当前类
 	 *
 	 * @access	public
 	 * @return	string
@@ -426,6 +457,7 @@ class CI_Router {
 
 	/**
 	 *  Set the method name
+	 *  设置方法名
 	 *
 	 * @access	public
 	 * @param	string
@@ -440,6 +472,7 @@ class CI_Router {
 
 	/**
 	 *  Fetch the current method
+	 *  取得当前方法
 	 *
 	 * @access	public
 	 * @return	string
@@ -458,6 +491,7 @@ class CI_Router {
 
 	/**
 	 *  Set the directory name
+	 *  设置目录名
 	 *
 	 * @access	public
 	 * @param	string
@@ -472,6 +506,7 @@ class CI_Router {
 
 	/**
 	 *  Fetch the sub-directory (if any) that contains the requested controller class
+	 *  取得子目录
 	 *
 	 * @access	public
 	 * @return	string
@@ -485,6 +520,7 @@ class CI_Router {
 
 	/**
 	 *  Set the controller overrides
+	 *  设置控制器重写
 	 *
 	 * @access	public
 	 * @param	array
@@ -497,17 +533,17 @@ class CI_Router {
 			return;
 		}
 
-		if (isset($routing['directory']))
+		if (isset($routing['directory'])) // 目录
 		{
 			$this->set_directory($routing['directory']);
 		}
 
-		if (isset($routing['controller']) AND $routing['controller'] != '')
+		if (isset($routing['controller']) AND $routing['controller'] != '') // 控制器
 		{
 			$this->set_class($routing['controller']);
 		}
 
-		if (isset($routing['function']))
+		if (isset($routing['function'])) // 函数
 		{
 			$routing['function'] = ($routing['function'] == '') ? 'index' : $routing['function'];
 			$this->set_method($routing['function']);

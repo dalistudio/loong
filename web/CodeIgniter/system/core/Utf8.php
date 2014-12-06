@@ -19,6 +19,7 @@
  * Utf8 Class
  *
  * Provides support for UTF-8 environments
+ * 提供对 UTF-8 环境的支持
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -30,8 +31,10 @@ class CI_Utf8 {
 
 	/**
 	 * Constructor
+	 * 构造函数
 	 *
 	 * Determines if UTF-8 support is to be enabled
+	 * 确定 UTF-8 支持是否启用
 	 *
 	 */
 	function __construct()
@@ -49,7 +52,7 @@ class CI_Utf8 {
 		{
 			log_message('debug', "UTF-8 Support Enabled");
 
-			define('UTF8_ENABLED', TRUE);
+			define('UTF8_ENABLED', TRUE); // 开启 UTF-8
 
 			// set internal encoding for multibyte string functions if necessary
 			// and set a flag so we don't have to repeatedly use extension_loaded()

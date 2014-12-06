@@ -19,6 +19,7 @@
  * CodeIgniter Hooks Class
  *
  * Provides a mechanism to extend the base system without hacking.
+ * 提供一种机制来扩展基本系统，无需骇客它。
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -30,18 +31,21 @@ class CI_Hooks {
 
 	/**
 	 * Determines wether hooks are enabled
+	 * 确定是否开启 hooks
 	 *
 	 * @var bool
 	 */
 	var $enabled		= FALSE;
 	/**
 	 * List of all hooks set in config/hooks.php
+	 * 所有 hooks 列表设置在 config/hooks.php文件中
 	 *
 	 * @var array
 	 */
 	var $hooks			= array();
 	/**
 	 * Determines wether hook is in progress, used to prevent infinte loops
+	 * 决定是否用在进程中，用来防止死循环。
 	 *
 	 * @var bool
 	 */
@@ -49,28 +53,31 @@ class CI_Hooks {
 
 	/**
 	 * Constructor
+	 * 构造函数
 	 *
 	 */
 	function __construct()
 	{
-		$this->_initialize();
-		log_message('debug', "Hooks Class Initialized");
+		$this->_initialize(); // 初始化
+		log_message('debug', "Hooks Class Initialized"); // 打印日志信息
 	}
 
 	// --------------------------------------------------------------------
 
 	/**
 	 * Initialize the Hooks Preferences
+	 * 初始化 Hooks 偏好参数
 	 *
 	 * @access	private
 	 * @return	void
 	 */
 	function _initialize()
 	{
-		$CFG =& load_class('Config', 'core');
+		$CFG =& load_class('Config', 'core'); // 加载配置类
 
 		// If hooks are not enabled in the config file
 		// there is nothing else to do
+		// 如果 Hooks 没有在配置文件中启用，则这里没有什么事做。
 
 		if ($CFG->item('enable_hooks') == FALSE)
 		{
@@ -79,6 +86,7 @@ class CI_Hooks {
 
 		// Grab the "hooks" definition file.
 		// If there are no hooks, we're done.
+		// 获取 “hooks” 定义文件，如果没有hooks，则什么都不做。
 
 		if (defined('ENVIRONMENT') AND is_file(APPPATH.'config/'.ENVIRONMENT.'/hooks.php'))
 		{
@@ -86,7 +94,7 @@ class CI_Hooks {
 		}
 		elseif (is_file(APPPATH.'config/hooks.php'))
 		{
-			include(APPPATH.'config/hooks.php');
+			include(APPPATH.'config/hooks.php'); // 默认加载配置目录下的hooks.php文件
 		}
 
 
@@ -105,6 +113,7 @@ class CI_Hooks {
 	 * Call Hook
 	 *
 	 * Calls a particular hook
+	 * 呼叫特殊的 hook
 	 *
 	 * @access	private
 	 * @param	string	the hook name
@@ -119,14 +128,14 @@ class CI_Hooks {
 
 		if (isset($this->hooks[$which][0]) AND is_array($this->hooks[$which][0]))
 		{
-			foreach ($this->hooks[$which] as $val)
+			foreach ($this->hooks[$which] as $val) // 循环所有 hook
 			{
-				$this->_run_hook($val);
+				$this->_run_hook($val); // 运行 hook
 			}
 		}
 		else
 		{
-			$this->_run_hook($this->hooks[$which]);
+			$this->_run_hook($this->hooks[$which]); // 运行 hook
 		}
 
 		return TRUE;
@@ -138,6 +147,7 @@ class CI_Hooks {
 	 * Run Hook
 	 *
 	 * Runs a particular hook
+	 * 运行特殊的 hook
 	 *
 	 * @access	private
 	 * @param	array	the hook details
@@ -147,11 +157,12 @@ class CI_Hooks {
 	{
 		if ( ! is_array($data))
 		{
-			return FALSE;
+			return FALSE; // 不存在数据，返回。
 		}
 
 		// -----------------------------------
 		// Safety - Prevents run-away loops
+		// 安全 - 防止死循环
 		// -----------------------------------
 
 		// If the script being called happens to have the same
@@ -164,6 +175,7 @@ class CI_Hooks {
 
 		// -----------------------------------
 		// Set file path
+		// 设置文件路径
 		// -----------------------------------
 
 		if ( ! isset($data['filepath']) OR ! isset($data['filename']))
@@ -173,13 +185,14 @@ class CI_Hooks {
 
 		$filepath = APPPATH.$data['filepath'].'/'.$data['filename'];
 
-		if ( ! file_exists($filepath))
+		if ( ! file_exists($filepath)) // 判断文件是否存在
 		{
 			return FALSE;
 		}
 
 		// -----------------------------------
 		// Set class/function name
+		// 设置 类/函数 名称
 		// -----------------------------------
 
 		$class		= FALSE;
@@ -188,17 +201,17 @@ class CI_Hooks {
 
 		if (isset($data['class']) AND $data['class'] != '')
 		{
-			$class = $data['class'];
+			$class = $data['class']; // 类
 		}
 
 		if (isset($data['function']))
 		{
-			$function = $data['function'];
+			$function = $data['function']; // 函数
 		}
 
 		if (isset($data['params']))
 		{
-			$params = $data['params'];
+			$params = $data['params']; // 参数
 		}
 
 		if ($class === FALSE AND $function === FALSE)
@@ -208,23 +221,25 @@ class CI_Hooks {
 
 		// -----------------------------------
 		// Set the in_progress flag
+		// 设置 在进程内 标志
 		// -----------------------------------
 
 		$this->in_progress = TRUE;
 
 		// -----------------------------------
 		// Call the requested class and/or function
+		// 呼叫请求 类 和/或 函数
 		// -----------------------------------
 
 		if ($class !== FALSE)
 		{
-			if ( ! class_exists($class))
+			if ( ! class_exists($class)) // 判断类是否存在
 			{
 				require($filepath);
 			}
 
-			$HOOK = new $class;
-			$HOOK->$function($params);
+			$HOOK = new $class; // 实例化类
+			$HOOK->$function($params); // 调用类中的函数
 		}
 		else
 		{
@@ -233,7 +248,7 @@ class CI_Hooks {
 				require($filepath);
 			}
 
-			$function($params);
+			$function($params); // 调用函数
 		}
 
 		$this->in_progress = FALSE;

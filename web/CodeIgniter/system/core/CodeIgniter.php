@@ -17,8 +17,10 @@
 
 /**
  * System Initialization File
+ * 系统初始化文件
  *
  * Loads the base classes and executes the request.
+ * 加载基类和执行请求
  *
  * @package		CodeIgniter
  * @subpackage	codeigniter
@@ -29,6 +31,7 @@
 
 /**
  * CodeIgniter Version
+ * 版本号
  *
  * @var string
  *
@@ -46,6 +49,7 @@
 /*
  * ------------------------------------------------------
  *  Load the global functions
+ *  加载全局函数
  * ------------------------------------------------------
  */
 	require(BASEPATH.'core/Common.php');
@@ -53,8 +57,10 @@
 /*
  * ------------------------------------------------------
  *  Load the framework constants
+ *  加载框架常量
  * ------------------------------------------------------
  */
+	// 如果应用中环境目录下存在常量文件则加载，否则加载默认目录下的常量文件
 	if (defined('ENVIRONMENT') AND file_exists(APPPATH.'config/'.ENVIRONMENT.'/constants.php'))
 	{
 		require(APPPATH.'config/'.ENVIRONMENT.'/constants.php');
@@ -67,9 +73,10 @@
 /*
  * ------------------------------------------------------
  *  Define a custom error handler so we can log PHP errors
+ *  定义一个自定义错误的句柄
  * ------------------------------------------------------
  */
-	set_error_handler('_exception_handler');
+	set_error_handler('_exception_handler'); // 系统函数：指定错误发生时的处理函数
 
 	if ( ! is_php('5.3'))
 	{
@@ -79,6 +86,7 @@
 /*
  * ------------------------------------------------------
  *  Set the subclass_prefix
+ *  设置子类的前缀
  * ------------------------------------------------------
  *
  * Normally the "subclass_prefix" is set in the config file.
@@ -100,6 +108,7 @@
 /*
  * ------------------------------------------------------
  *  Set a liberal script execution time limit
+ *  设置一个自由的脚本执行时间限制
  * ------------------------------------------------------
  */
 	if (function_exists("set_time_limit") == TRUE AND @ini_get("safe_mode") == 0)
@@ -110,42 +119,49 @@
 /*
  * ------------------------------------------------------
  *  Start the timer... tick tock tick tock...
+ *  开启定时器... 滴答 滴答
  * ------------------------------------------------------
  */
-	$BM =& load_class('Benchmark', 'core');
-	$BM->mark('total_execution_time_start');
-	$BM->mark('loading_time:_base_classes_start');
+	$BM =& load_class('Benchmark', 'core'); // 加载类
+	$BM->mark('total_execution_time_start'); // 总执行时间开始
+	$BM->mark('loading_time:_base_classes_start'); // 加载时间：基类开始
 
 /*
  * ------------------------------------------------------
  *  Instantiate the hooks class
+ *  实例化 hooks 类
  * ------------------------------------------------------
  */
-	$EXT =& load_class('Hooks', 'core');
+	$EXT =& load_class('Hooks', 'core'); // 加载核心的Hooks类
 
 /*
  * ------------------------------------------------------
  *  Is there a "pre_system" hook?
+ *  是否有一个 "pre_system" 勾子
  * ------------------------------------------------------
  */
-	$EXT->_call_hook('pre_system');
+	// 系统执行的早期调用.仅仅在benchmark 和 hooks 类 加载完毕的时候. 没有执行路由或者其它的过程.
+	$EXT->_call_hook('pre_system'); // 呼叫勾子
 
 /*
  * ------------------------------------------------------
  *  Instantiate the config class
+ *  实力化 confiig 类
  * ------------------------------------------------------
  */
-	$CFG =& load_class('Config', 'core');
+	$CFG =& load_class('Config', 'core'); // 加载配置类
 
 	// Do we have any manually set config items in the index.php file?
+	// 我们是否有手动设置配置项在 index.php 文件中？
 	if (isset($assign_to_config))
 	{
-		$CFG->_assign_to_config($assign_to_config);
+		$CFG->_assign_to_config($assign_to_config); // 分配到配置文件
 	}
 
 /*
  * ------------------------------------------------------
  *  Instantiate the UTF-8 class
+ *  实例化 UTF-8 类
  * ------------------------------------------------------
  *
  * Note: Order here is rather important as the UTF-8
@@ -155,43 +171,50 @@
  *
  */
 
-	$UNI =& load_class('Utf8', 'core');
+	$UNI =& load_class('Utf8', 'core'); // 加载utf8类 
 
 /*
  * ------------------------------------------------------
  *  Instantiate the URI class
+ *  实例化 URI 类
  * ------------------------------------------------------
  */
-	$URI =& load_class('URI', 'core');
+	$URI =& load_class('URI', 'core'); // 加载 URI 类
 
 /*
  * ------------------------------------------------------
  *  Instantiate the routing class and set the routing
+ *  实例化 routing 类，和设置路由
  * ------------------------------------------------------
  */
-	$RTR =& load_class('Router', 'core');
-	$RTR->_set_routing();
+	$RTR =& load_class('Router', 'core'); // 加载路由类
+	$RTR->_set_routing(); // 设置路由
 
 	// Set any routing overrides that may exist in the main index file
 	if (isset($routing))
 	{
-		$RTR->_set_overrides($routing);
+		$RTR->_set_overrides($routing); // 设置重写
 	}
 
 /*
  * ------------------------------------------------------
  *  Instantiate the output class
+ *  实例化 output 类
  * ------------------------------------------------------
  */
-	$OUT =& load_class('Output', 'core');
+	$OUT =& load_class('Output', 'core'); // 加载输出类
 
 /*
  * ------------------------------------------------------
  *	Is there a valid cache file?  If so, we're done...
+ *      是否有一个有效的缓冲文件？如果是，我们做...
  * ------------------------------------------------------
  */
+	// 呼叫勾子 'cache_override' 缓冲重写
+	// 可以让你调用自己的函数来取代output类中的_display_cache() 函数.这可以让你使用自己的缓存显示方法
 	if ($EXT->_call_hook('cache_override') === FALSE)
 	{
+		// 显示缓冲
 		if ($OUT->_display_cache($CFG, $URI) == TRUE)
 		{
 			exit;
@@ -200,69 +223,82 @@
 
 /*
  * -----------------------------------------------------
- * Load the security class for xss and csrf support
+ *  Load the security class for xss and csrf support
+ *  加载 security 类为了支持 xss 和 csrf
  * -----------------------------------------------------
  */
-	$SEC =& load_class('Security', 'core');
+	$SEC =& load_class('Security', 'core'); // 加载安全类
 
 /*
  * ------------------------------------------------------
  *  Load the Input class and sanitize globals
+ *  加载 Input 类
  * ------------------------------------------------------
  */
-	$IN	=& load_class('Input', 'core');
+	$IN	=& load_class('Input', 'core'); // 加载输入类
 
 /*
  * ------------------------------------------------------
  *  Load the Language class
+ *  加载 Language 类
  * ------------------------------------------------------
  */
-	$LANG =& load_class('Lang', 'core');
+	$LANG =& load_class('Lang', 'core'); // 加载语言类
 
 /*
  * ------------------------------------------------------
  *  Load the app controller and local controller
+ *  加载 app 控制器和本地控制器
  * ------------------------------------------------------
  *
  */
 	// Load the base controller class
-	require BASEPATH.'core/Controller.php';
+	// 加载基础控制器类
+	require BASEPATH.'core/Controller.php'; // 控制器基类
 
-	function &get_instance()
+	function &get_instance() // 实例化
 	{
 		return CI_Controller::get_instance();
 	}
 
-
+	// 判断文件是否存在 应用/核心/控制器继承类
 	if (file_exists(APPPATH.'core/'.$CFG->config['subclass_prefix'].'Controller.php'))
 	{
-		require APPPATH.'core/'.$CFG->config['subclass_prefix'].'Controller.php';
+		require APPPATH.'core/'.$CFG->config['subclass_prefix'].'Controller.php'; // 加载应用继承的控制类
 	}
 
 	// Load the local application controller
+	// 加载本地应用控制器
 	// Note: The Router class automatically validates the controller path using the router->_validate_request().
 	// If this include fails it means that the default controller in the Routes.php file is not resolving to something valid.
+
+	// 判断文件是否存在 应用/控制器/所有目录/所有类文件.php
 	if ( ! file_exists(APPPATH.'controllers/'.$RTR->fetch_directory().$RTR->fetch_class().'.php'))
 	{
 		show_error('Unable to load your default controller. Please make sure the controller specified in your Routes.php file is valid.');
 	}
 
+	// 加载所有 应用/控制器/所有目录/所有类文件.php
 	include(APPPATH.'controllers/'.$RTR->fetch_directory().$RTR->fetch_class().'.php');
 
 	// Set a mark point for benchmarking
-	$BM->mark('loading_time:_base_classes_end');
+	$BM->mark('loading_time:_base_classes_end'); // 加载时间：基类结束
 
 /*
  * ------------------------------------------------------
  *  Security check
+ *  安全检查
  * ------------------------------------------------------
  *
  *  None of the functions in the app controller or the
  *  loader class can be called via the URI, nor can
  *  controller functions that begin with an underscore
+ *
+ *  控制器或加载类的函数，不能呼叫 URI。
+ *  控制器的函数名也不能以下划线开始。
  */
-	$class  = $RTR->fetch_class();
-	$method = $RTR->fetch_method();
+	$class  = $RTR->fetch_class(); // 类
+	$method = $RTR->fetch_method(); // 方法
 
 	if ( ! class_exists($class)
 		OR strncmp($method, '_', 1) == 0
@@ -293,36 +329,43 @@
 /*
  * ------------------------------------------------------
  *  Is there a "pre_controller" hook?
+ *  是否存在 "pre_controller" 勾子？
  * ------------------------------------------------------
  */
-	$EXT->_call_hook('pre_controller');
+	// 在调用你的任何控制器之前调用.此时所用的基础类,路由选择和安全性检查都已完成.
+	$EXT->_call_hook('pre_controller'); // 呼叫勾子
 
 /*
  * ------------------------------------------------------
  *  Instantiate the requested controller
+ *  实例化 requested 控制器
  * ------------------------------------------------------
  */
 	// Mark a start point so we can benchmark the controller
 	$BM->mark('controller_execution_time_( '.$class.' / '.$method.' )_start');
 
-	$CI = new $class();
+	$CI = new $class(); // 实例化新的类
 
 /*
  * ------------------------------------------------------
  *  Is there a "post_controller_constructor" hook?
+ *  是否存在 "post_controller_constructor" 勾子？
  * ------------------------------------------------------
  */
-	$EXT->_call_hook('post_controller_constructor');
+	// 在你的控制器实例化之后,任何方法调用之前调用.
+	$EXT->_call_hook('post_controller_constructor'); // 呼叫勾子
 
 /*
  * ------------------------------------------------------
  *  Call the requested method
+ *  调用 requested 方法
  * ------------------------------------------------------
  */
 	// Is there a "remap" function? If so, we call it instead
+	// 是否存在 "remap" 函数？如果是，则呼叫它插入 
 	if (method_exists($CI, '_remap'))
 	{
-		$CI->_remap($method, array_slice($URI->rsegments, 2));
+		$CI->_remap($method, array_slice($URI->rsegments, 2)); // 执行_remap函数
 	}
 	else
 	{
@@ -331,21 +374,25 @@
 		if ( ! in_array(strtolower($method), array_map('strtolower', get_class_methods($CI))))
 		{
 			// Check and see if we are using a 404 override and use it.
+			// 检查看看，如果使用了404重写就使用它。
 			if ( ! empty($RTR->routes['404_override']))
 			{
 				$x = explode('/', $RTR->routes['404_override']);
 				$class = $x[0];
 				$method = (isset($x[1]) ? $x[1] : 'index');
+
+				// 判断类是否存在
 				if ( ! class_exists($class))
 				{
+					// 判断文件是否存在
 					if ( ! file_exists(APPPATH.'controllers/'.$class.'.php'))
 					{
-						show_404("{$class}/{$method}");
+						show_404("{$class}/{$method}"); // 显示文件内容
 					}
 
-					include_once(APPPATH.'controllers/'.$class.'.php');
+					include_once(APPPATH.'controllers/'.$class.'.php'); // 加载控制器
 					unset($CI);
-					$CI = new $class();
+					$CI = new $class(); // 实例化
 				}
 			}
 			else
@@ -356,45 +403,57 @@
 
 		// Call the requested method.
 		// Any URI segments present (besides the class/function) will be passed to the method for convenience
-		call_user_func_array(array(&$CI, $method), array_slice($URI->rsegments, 2));
+		// 呼叫请求的方法
+		// 任意 URI 段的处理（除了类/函数）将传给方法转换
+		call_user_func_array(array(&$CI, $method), array_slice($URI->rsegments, 2)); // 呼叫用户函数组
 	}
 
 
 	// Mark a benchmark end point
-	$BM->mark('controller_execution_time_( '.$class.' / '.$method.' )_end');
+	$BM->mark('controller_execution_time_( '.$class.' / '.$method.' )_end'); // 控制器执行时间：结束
 
 /*
  * ------------------------------------------------------
  *  Is there a "post_controller" hook?
+ *  是否存在 "post_controller" 勾子？
  * ------------------------------------------------------
  */
-	$EXT->_call_hook('post_controller');
+	// 在你的控制器完全运行之后调用.
+	$EXT->_call_hook('post_controller'); // 呼叫勾子
 
 /*
  * ------------------------------------------------------
  *  Send the final rendered output to the browser
+ *  把最终的内容输出到浏览器
  * ------------------------------------------------------
  */
+	// 判断勾子是否存在
+	// 覆盖_display()函数, 用来在系统执行末尾向web浏览器发送最终页面.这允许你用自己的方法来显示.
+	// 注意，你需要通过 $this->CI =& get_instance() 引用 CI 超级对象，
+	// 然后这样的最终数据可以通过调用 $this->CI->output->get_output() 来获得。
 	if ($EXT->_call_hook('display_override') === FALSE)
 	{
-		$OUT->_display();
+		$OUT->_display(); // 输出显示
 	}
 
 /*
  * ------------------------------------------------------
  *  Is there a "post_system" hook?
+ *  是否存在 "post_system" 勾子？
  * ------------------------------------------------------
  */
-	$EXT->_call_hook('post_system');
+	// 在最终渲染的页面发送到浏览器之后,浏览器接收完最终数据的系统执行末尾调用
+	$EXT->_call_hook('post_system'); // 呼叫勾子
 
 /*
  * ------------------------------------------------------
  *  Close the DB connection if one exists
+ *  如果存在数据库连接，则关闭它。
  * ------------------------------------------------------
  */
 	if (class_exists('CI_DB') AND isset($CI->db))
 	{
-		$CI->db->close();
+		$CI->db->close(); // 关闭数据库
 	}
 
 

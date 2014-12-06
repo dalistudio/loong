@@ -17,6 +17,7 @@
 
 /**
  * CodeIgniter Model Class
+ * 数据模型基类
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -28,6 +29,7 @@ class CI_Model {
 
 	/**
 	 * Constructor
+	 * 构造函数
 	 *
 	 * @access public
 	 */

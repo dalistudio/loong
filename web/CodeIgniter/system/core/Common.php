@@ -17,6 +17,7 @@
 
 /**
  * Common Functions
+ * 公共函数
  *
  * Loads the base classes and executes the request.
  *
@@ -31,6 +32,7 @@
 
 /**
 * Determines if the current version of PHP is greater then the supplied value
+* 判断 PHP 版本是否大于5.0.0
 *
 * Since there are a few places where we conditionally test for PHP > 5
 * we'll set a static variable.
@@ -59,6 +61,7 @@ if ( ! function_exists('is_php'))
 
 /**
  * Tests for file writability
+ * 测试文件是否可写
  *
  * is_writable() returns TRUE on Windows servers when you really can't write to
  * the file, based on the read-only attribute.  is_writable() is also unreliable
@@ -107,6 +110,7 @@ if ( ! function_exists('is_really_writable'))
 
 /**
 * Class registry
+* 类注册
 *
 * This function acts as a singleton.  If the requested class does not
 * exist it is instantiated and set to a static variable.  If it has
@@ -125,6 +129,7 @@ if ( ! function_exists('load_class'))
 		static $_classes = array();
 
 		// Does the class exist?  If so, we're done...
+		// 判断类是否存在
 		if (isset($_classes[$class]))
 		{
 			return $_classes[$class];
@@ -136,6 +141,7 @@ if ( ! function_exists('load_class'))
 		// then in the native system/libraries folder
 		foreach (array(APPPATH, BASEPATH) as $path)
 		{
+			// 检查类文件是否存在
 			if (file_exists($path.$directory.'/'.$class.'.php'))
 			{
 				$name = $prefix.$class;
@@ -204,6 +210,7 @@ if ( ! function_exists('is_loaded'))
 
 /**
 * Loads the main config.php file
+* 加载主配置文件 config.php
 *
 * This function lets us grab the config file even if the Config class
 * hasn't been instantiated yet
@@ -262,6 +269,7 @@ if ( ! function_exists('get_config'))
 
 /**
 * Returns the specified config item
+* 返回指定配置项
 *
 * @access	public
 * @return	mixed
@@ -291,6 +299,7 @@ if ( ! function_exists('config_item'))
 
 /**
 * Error Handler
+* 错误处理器
 *
 * This function lets us invoke the exception class and
 * display errors using the standard error template located
@@ -315,6 +324,7 @@ if ( ! function_exists('show_error'))
 
 /**
 * 404 Page Handler
+* 404 页面处理器
 *
 * This function is similar to the show_error() function above
 * However, instead of the standard error template it displays
@@ -337,6 +347,7 @@ if ( ! function_exists('show_404'))
 
 /**
 * Error Logging Interface
+* 错误日志接口
 *
 * We use this as a simple mechanism to access the logging
 * class and send messages to be logged.
@@ -364,6 +375,7 @@ if ( ! function_exists('log_message'))
 
 /**
  * Set HTTP Status Header
+ * 设置 HTTP 状态头
  *
  * @access	public
  * @param	int		the status code

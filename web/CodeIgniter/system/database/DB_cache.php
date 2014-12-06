@@ -17,6 +17,7 @@
 
 /**
  * Database Cache Class
+ * 数据库缓冲类
  *
  * @category	Database
  * @author		ExpressionEngine Dev Team
