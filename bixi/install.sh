@@ -15,7 +15,7 @@ fi
 cp ./etc/bixi.ini $INSTALL_DIR/etc/
 
 # 复制 bixi 动态页面文件
-cp -r ./web/* $INSTALL_DIR/web/taotie
-chown -R loong:loong $INSTALL_DIR/web/taotie/*
+cp -r ./web/* $INSTALL_DIR/web/www
+chown -R loong:loong $INSTALL_DIR/web/www/*
 
 echo "Install BiXi End"

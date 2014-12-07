@@ -30,8 +30,7 @@ rm site/system/database/drivers/pdo/index.html
 rm site/system/database/drivers/postgre/index.html
 rm site/system/database/drivers/sqlite/index.html
 rm site/system/database/drivers/sqlsrv/index.html
-rm site/system/fonts/index.html
-rm site/system/fonts/texb.ttf
+rm -r site/system/fonts
 rm site/system/helpers/index.html
 rm site/system/language/index.html
 rm site/system/language/english/index.html
@@ -51,7 +50,7 @@ rm site/app/errors/index.html
 rm site/app/helpers/index.html
 rm site/app/hooks/index.html
 rm site/app/language/index.html
-rm site/app/language/english/index.html
+rm -r site/app/language/english
 rm site/app/libraries/index.html
 rm site/app/logs/index.html
 rm site/app/models/index.html
@@ -68,7 +67,7 @@ rm site/admin/errors/index.html
 rm site/admin/helpers/index.html
 rm site/admin/hooks/index.html
 rm site/admin/language/index.html
-rm site/admin/language/english/index.html
+rm -r site/admin/language/english
 rm site/admin/libraries/index.html
 rm site/admin/logs/index.html
 rm site/admin/models/index.html

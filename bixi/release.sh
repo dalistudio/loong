@@ -14,14 +14,8 @@ fi
 
 cp ./etc/bixi.ini $RELEASE_DIR/opt/loong/etc/
 
-## 创建项目的网站目录
-#if [ ! -d $RELEASE_DIR/opt/loong/web/bixi ];then
-#    mkdir -p $RELEASE_DIR/opt/loong/web/bixi
-#    chown -R loong:loong $RELEASE_DIR/opt/loong/web
-#fi
-
-# 复制 bixi 动态页面文件到 taotie 目录
-cp -r ./web/* $RELEASE_DIR/opt/loong/web/taotie
-chown -R loong:loong $RELEASE_DIR/opt/loong/web/taotie/*
+# 复制 bixi 动态页面文件到 www 目录
+cp -r ./web/* $RELEASE_DIR/opt/loong/web/www
+chown -R loong:loong $RELEASE_DIR/opt/loong/web/www/*
 
 echo "Release BiXi End"
