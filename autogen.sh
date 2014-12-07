@@ -2,6 +2,9 @@
 # Copyright (c) 2014, wangdali <wangdali@qq.com>
 #
 
+# 删除临时文件
+./del_temp.sh
+
 # 生成饕餮
 cd taotie
 ./autogen.sh
