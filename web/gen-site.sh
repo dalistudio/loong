@@ -36,16 +36,16 @@ if [ ! -d $SITE_DIR/admin ];then
 fi
 
 # 复制 system 目录内容
-cp -R CodeIgniter/system/* $SITE_DIR/system/
+cp -R framework/system/* $SITE_DIR/system/
 
 # 复制 app 目录内容
-cp -R CodeIgniter/application/* $SITE_DIR/app
+cp -R framework/application/* $SITE_DIR/app
 
 # 复制 admin 目录内容
-cp -R CodeIgniter/application/* $SITE_DIR/admin
+cp -R framework/application/* $SITE_DIR/admin
 
 # 复制 index.php 入口文件到站点发布目录
-cp CodeIgniter/index.php $SITE_DIR/www
-cp CodeIgniter/index.php $SITE_DIR/www/admin
+cp framework/index.php $SITE_DIR/www
+cp framework/index.php $SITE_DIR/www/admin
 
 
