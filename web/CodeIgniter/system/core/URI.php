@@ -18,7 +18,6 @@
 /**
  * URI Class
  *
- * Parses URIs and determines routing
  * 解析 URI 和决定路由
  *
  * @package		CodeIgniter
@@ -30,7 +29,6 @@
 class CI_URI {
 
 	/**
-	 * List of cached uri segments
 	 * 缓存 URI 段到链表
 	 *
 	 * @var array
@@ -38,7 +36,6 @@ class CI_URI {
 	 */
 	var	$keyval			= array();
 	/**
-	 * Current uri string
 	 * 当前 URI 字符串
 	 *
 	 * @var string
@@ -46,7 +43,6 @@ class CI_URI {
 	 */
 	var $uri_string;
 	/**
-	 * List of uri segments
 	 * URI 段的链表
 	 *
 	 * @var array
@@ -63,7 +59,6 @@ class CI_URI {
 	var $rsegments		= array();
 
 	/**
-	 * Constructor
 	 * 构造函数
 	 *
 	 * Simply globalizes the $RTR object.  The front
@@ -82,7 +77,6 @@ class CI_URI {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Get the URI String
 	 * 获取 URI 字符串
 	 *
 	 * @access	private
@@ -92,7 +86,6 @@ class CI_URI {
 	{
 		if (strtoupper($this->config->item('uri_protocol')) == 'AUTO') // 协议类型设置位自动
 		{
-			// Is the request coming from the command line?
 			// 是否请求来之命令行？
 			if (php_sapi_name() == 'cli' or defined('STDIN'))
 			{
@@ -100,7 +93,6 @@ class CI_URI {
 				return;
 			}
 
-			// Let's try the REQUEST_URI first, this will work in most situations
 			// 先让我们试下 REQUEST_URI，大多数情况在这下面工作。
 			if ($uri = $this->_detect_uri())
 			{
@@ -108,9 +100,7 @@ class CI_URI {
 				return;
 			}
 
-			// Is there a PATH_INFO variable?
 			// 是否是一个 PATH_INFO 变量？
-			// Note: some servers seem to have trouble with getenv() so we'll test it two ways
 			// 注意：有些服务器系统似乎使用 getenv() 比较麻烦。所以我们将测试下面两种
 			// trim($path,'/') 表示删除 $path 字符串两端的 '/' 符号
 			$path = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : @getenv('PATH_INFO');
@@ -120,7 +110,6 @@ class CI_URI {
 				return;
 			}
 
-			// No PATH_INFO?... What about QUERY_STRING?
 			// 没有 PATH_INFO？... 将使用 QUERY_STRING？
 			$path =  (isset($_SERVER['QUERY_STRING'])) ? $_SERVER['QUERY_STRING'] : @getenv('QUERY_STRING');
 			if (trim($path, '/') != '')
@@ -129,7 +118,6 @@ class CI_URI {
 				return;
 			}
 
-			// As a last ditch effort lets try using the $_GET array
 			// 作为最后的努力我们试着用 $_GET
 			if (is_array($_GET) && count($_GET) == 1 && trim(key($_GET), '/') != '')
 			{
@@ -162,7 +150,6 @@ class CI_URI {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Set the URI String
 	 * 设置 URI 字符串
 	 *
 	 * @access	public
@@ -171,11 +158,9 @@ class CI_URI {
 	 */
 	function _set_uri_string($str)
 	{
-		// Filter out control characters
 		// 过滤控制字符
 		$str = remove_invisible_characters($str, FALSE);
 
-		// If the URI contains only a slash we'll kill it
 		// 如果 URI 包含只有一个斜线，将删除它。
 		$this->uri_string = ($str == '/') ? '' : $str;
 	}
@@ -183,11 +168,8 @@ class CI_URI {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Detects the URI
 	 * 检查 URI
 	 *
-	 * This function will detect the URI automatically and fix the query string
-	 * if necessary.
 	 * 这个函数将自动检测URI和如果有必要的话，修复这个请求字符串
 	 *
 	 * @access	private
@@ -244,10 +226,8 @@ class CI_URI {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Parse cli arguments
 	 * 处理命令行参数
 	 *
-	 * Take each command line argument and assume it is a URI segment.
 	 * 把每一个命令行的参数分配给 URI段
 	 * @access	private
 	 * @return	string
@@ -262,7 +242,6 @@ class CI_URI {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Filter segments for malicious characters
 	 * 过滤段的恶意字符
 	 *
 	 * @access	private
@@ -291,7 +270,6 @@ class CI_URI {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Remove the suffix from the URL if needed
 	 * 如果有需要从URL删除后缀
 	 *
 	 * @access	private
@@ -308,8 +286,6 @@ class CI_URI {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Explode the URI Segments. The individual segments will
-	 * be stored in the $this->segments array.
 	 * 展开 URI 段，将段保存到 $this->segments 数组中
 	 *
 	 * @access	private
@@ -331,7 +307,6 @@ class CI_URI {
 
 	// --------------------------------------------------------------------
 	/**
-	 * Re-index Segments
 	 * 重新引索段
 	 *
 	 * This function re-indexes the $this->segment array so that it
@@ -353,7 +328,6 @@ class CI_URI {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Fetch a URI Segment
 	 * 取一个URI段
 	 *
 	 * This function returns the URI segment based on the number provided.
@@ -371,7 +345,6 @@ class CI_URI {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Fetch a URI "routed" Segment
 	 * 取一个 URI 路由到段
 	 *
 	 * This function returns the re-routed URI segment (assuming routing rules are used)
@@ -391,7 +364,6 @@ class CI_URI {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Generate a key value pair from the URI string
 	 * 生成一个键-值对来至URI字符串
 	 *
 	 * This function generates and associative array of URI data starting

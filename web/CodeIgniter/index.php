@@ -1,37 +1,27 @@
 <?php
-
 /*
  *---------------------------------------------------------------
- * APPLICATION ENVIRONMENT
  * 应用环境
  *---------------------------------------------------------------
  *
- * You can load different configurations depending on your
- * current environment. Setting the environment also influences
- * things like logging and error reporting.
  * 你可以加载不同的配置取决于你当前的环境。
  * 设置环境也影响者诸如登录和错误报告。
  *
- * This can be set to anything, but default usage is:
  * 这可以设置为任何东西，但默认使用：
  *
  *     development	开发
  *     testing		测试
  *     production	产品
  *
- * NOTE: If you change these, also change the error_reporting() code below
  * 注意：如果你改变这些，也需改变 error_reporting() 函数的代码
  *
  */
 	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------
- * ERROR REPORTING
  * 错误报告
  *---------------------------------------------------------------
  *
- * Different environments will require different levels of error reporting.
- * By default development will show errors but testing and live will hide them.
  * 不同的环境需要不同级别的错误报告。
  * 默认环境为 development 将显示错误，但 testing 将隐藏。
  */
@@ -56,13 +46,9 @@ if (defined('ENVIRONMENT'))
 
 /*
  *---------------------------------------------------------------
- * SYSTEM FOLDER NAME
  * 系统目录名
  *---------------------------------------------------------------
  *
- * This variable must contain the name of your "system" folder.
- * Include the path if the folder is not in the same  directory
- * as this file.
  * 这个变量必需包含你的 "system" 目录名称。
  * 如果 "system" 目录和这个文件不在同一目录，请包含完整路径。
  *
@@ -71,22 +57,14 @@ if (defined('ENVIRONMENT'))
 
 /*
  *---------------------------------------------------------------
- * APPLICATION FOLDER NAME
  * 应用目录名
  *---------------------------------------------------------------
- *
- * If you want this front controller to use a different "application"
- * folder then the default one you can set its name here. The folder
- * can also be renamed or relocated anywhere on your server.  If
- * you do, use a full server path. For more info please see the user guide:
- * http://codeigniter.com/user_guide/general/managing_apps.html
  *
  * 如果你想前端控制器使用不同的 "application" 目录，然后你可以设置默认名字在这里。
  * 这个目录可以重新命名或重新定位到你服务器的任意地方。
  * 如果你这样做，更多信息请看用户指南：
  * http://www.codeigniter.org.cn/user_guide/general/managing_apps.html
  *
- * NO TRAILING SLASH!
  * 末尾没有斜线
  *
  */
@@ -94,16 +72,8 @@ if (defined('ENVIRONMENT'))
 
 /*
  * --------------------------------------------------------------------
- * DEFAULT CONTROLLER
  * 默认控制器
  * --------------------------------------------------------------------
- *
- * Normally you will set your default controller in the routes.php file.
- * You can, however, force a custom routing by hard-coding a
- * specific controller class/function here.  For most applications, you
- * WILL NOT set your routing here, but it's an option for those
- * special instances where you might want to override the standard
- * routing in a specific front controller that shares a common CI installation.
  *
  * 通常你将在 routes.php 文件中设置你的默认控制器。
  * 你可以强制为指定的控制器 类/函数 设置硬编码路由。
@@ -115,7 +85,6 @@ if (defined('ENVIRONMENT'))
  * specific controller.  Leave the function name blank if you need
  * to call functions dynamically via the URI.
  *
- * Un-comment the $routing array below to use this feature
  * 取消注释 使用 $routing 数组这个特色
  *
  */
@@ -132,7 +101,6 @@ if (defined('ENVIRONMENT'))
 
 /*
  * -------------------------------------------------------------------
- *  CUSTOM CONFIG VALUES
  *  自定义配置变量
  * -------------------------------------------------------------------
  *
@@ -143,7 +111,6 @@ if (defined('ENVIRONMENT'))
  * multiple front controller files, with each file containing different
  * config values.
  *
- * Un-comment the $assign_to_config array below to use this feature
  * 取消注释 使用 $assign_to_config 数组这个特色
  *
  */
@@ -152,18 +119,15 @@ if (defined('ENVIRONMENT'))
 
 
 // --------------------------------------------------------------------
-// END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
 // 用户配置结束。 不要编辑下面这行。
 // --------------------------------------------------------------------
 
 /*
  * ---------------------------------------------------------------
- *  Resolve the system path for increased reliability
  *  解决系统路径提高稳定性
  * ---------------------------------------------------------------
  */
 
-	// Set the current directory correctly for CLI requests
 	// 正确的设置当前目录用于 CLI 请求
 	if (defined('STDIN'))
 	{
@@ -175,11 +139,9 @@ if (defined('ENVIRONMENT'))
 		$system_path = realpath($system_path).'/';
 	}
 
-	// ensure there's a trailing slash
 	// 确保末尾有斜杠
 	$system_path = rtrim($system_path, '/').'/';
 
-	// Is the system path correct?
 	// 系统路径是否正确?
 	if ( ! is_dir($system_path))
 	{
@@ -188,33 +150,25 @@ if (defined('ENVIRONMENT'))
 
 /*
  * -------------------------------------------------------------------
- *  Now that we know the path, set the main path constants
  *  现在我们知道路径，设置主路径常量
  * -------------------------------------------------------------------
  */
-	// The name of THIS file
 	// 这个文件的名称
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
-	// The PHP file extension
-	// this global constant is deprecated.
 	// PHP文件扩展名
 	// 不建议使用全局常量
 	define('EXT', '.php');
 
-	// Path to the system folder
 	// "system" 目录的路径
 	define('BASEPATH', str_replace("\\", "/", $system_path));
 
 	// Path to the front controller (this file)
 	define('FCPATH', str_replace(SELF, '', __FILE__));
 
-	// Name of the "system folder"
 	// "system" 目录的名字
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
-
-	// The path to the "application" folder
 	// "application" 目录的路径
 	if (is_dir($application_folder))
 	{
@@ -232,11 +186,9 @@ if (defined('ENVIRONMENT'))
 
 /*
  * --------------------------------------------------------------------
- * LOAD THE BOOTSTRAP FILE
  * 加载引导启动文件
  * --------------------------------------------------------------------
  *
- * And away we go...
  * 我们出发吧...
  *
  */

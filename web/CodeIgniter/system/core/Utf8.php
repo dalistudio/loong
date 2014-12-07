@@ -18,7 +18,6 @@
 /**
  * Utf8 Class
  *
- * Provides support for UTF-8 environments
  * 提供对 UTF-8 环境的支持
  *
  * @package		CodeIgniter
@@ -30,10 +29,8 @@
 class CI_Utf8 {
 
 	/**
-	 * Constructor
 	 * 构造函数
 	 *
-	 * Determines if UTF-8 support is to be enabled
 	 * 确定 UTF-8 支持是否启用
 	 *
 	 */

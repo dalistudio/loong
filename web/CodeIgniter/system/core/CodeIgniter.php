@@ -16,10 +16,8 @@
 // ------------------------------------------------------------------------
 
 /**
- * System Initialization File
  * 系统初始化文件
  *
- * Loads the base classes and executes the request.
  * 加载基类和执行请求
  *
  * @package		CodeIgniter
@@ -30,7 +28,6 @@
  */
 
 /**
- * CodeIgniter Version
  * 版本号
  *
  * @var string
@@ -48,7 +45,6 @@
 
 /*
  * ------------------------------------------------------
- *  Load the global functions
  *  加载全局函数
  * ------------------------------------------------------
  */
@@ -56,7 +52,6 @@
 
 /*
  * ------------------------------------------------------
- *  Load the framework constants
  *  加载框架常量
  * ------------------------------------------------------
  */
@@ -72,7 +67,6 @@
 
 /*
  * ------------------------------------------------------
- *  Define a custom error handler so we can log PHP errors
  *  定义一个自定义错误的句柄
  * ------------------------------------------------------
  */
@@ -85,7 +79,6 @@
 
 /*
  * ------------------------------------------------------
- *  Set the subclass_prefix
  *  设置子类的前缀
  * ------------------------------------------------------
  *
@@ -118,7 +111,6 @@
 
 /*
  * ------------------------------------------------------
- *  Start the timer... tick tock tick tock...
  *  开启定时器... 滴答 滴答
  * ------------------------------------------------------
  */
@@ -128,7 +120,6 @@
 
 /*
  * ------------------------------------------------------
- *  Instantiate the hooks class
  *  实例化 hooks 类
  * ------------------------------------------------------
  */
@@ -136,7 +127,6 @@
 
 /*
  * ------------------------------------------------------
- *  Is there a "pre_system" hook?
  *  是否有一个 "pre_system" 勾子
  * ------------------------------------------------------
  */
@@ -145,13 +135,11 @@
 
 /*
  * ------------------------------------------------------
- *  Instantiate the config class
  *  实力化 confiig 类
  * ------------------------------------------------------
  */
 	$CFG =& load_class('Config', 'core'); // 加载配置类
 
-	// Do we have any manually set config items in the index.php file?
 	// 我们是否有手动设置配置项在 index.php 文件中？
 	if (isset($assign_to_config))
 	{
@@ -160,7 +148,6 @@
 
 /*
  * ------------------------------------------------------
- *  Instantiate the UTF-8 class
  *  实例化 UTF-8 类
  * ------------------------------------------------------
  *
@@ -175,7 +162,6 @@
 
 /*
  * ------------------------------------------------------
- *  Instantiate the URI class
  *  实例化 URI 类
  * ------------------------------------------------------
  */
@@ -183,7 +169,6 @@
 
 /*
  * ------------------------------------------------------
- *  Instantiate the routing class and set the routing
  *  实例化 routing 类，和设置路由
  * ------------------------------------------------------
  */
@@ -198,7 +183,6 @@
 
 /*
  * ------------------------------------------------------
- *  Instantiate the output class
  *  实例化 output 类
  * ------------------------------------------------------
  */
@@ -206,7 +190,6 @@
 
 /*
  * ------------------------------------------------------
- *	Is there a valid cache file?  If so, we're done...
  *      是否有一个有效的缓冲文件？如果是，我们做...
  * ------------------------------------------------------
  */
@@ -223,7 +206,6 @@
 
 /*
  * -----------------------------------------------------
- *  Load the security class for xss and csrf support
  *  加载 security 类为了支持 xss 和 csrf
  * -----------------------------------------------------
  */
@@ -231,7 +213,6 @@
 
 /*
  * ------------------------------------------------------
- *  Load the Input class and sanitize globals
  *  加载 Input 类
  * ------------------------------------------------------
  */
@@ -239,7 +220,6 @@
 
 /*
  * ------------------------------------------------------
- *  Load the Language class
  *  加载 Language 类
  * ------------------------------------------------------
  */
@@ -247,12 +227,10 @@
 
 /*
  * ------------------------------------------------------
- *  Load the app controller and local controller
  *  加载 app 控制器和本地控制器
  * ------------------------------------------------------
  *
  */
-	// Load the base controller class
 	// 加载基础控制器类
 	require BASEPATH.'core/Controller.php'; // 控制器基类
 
@@ -267,7 +245,6 @@
 		require APPPATH.'core/'.$CFG->config['subclass_prefix'].'Controller.php'; // 加载应用继承的控制类
 	}
 
-	// Load the local application controller
 	// 加载本地应用控制器
 	// Note: The Router class automatically validates the controller path using the router->_validate_request().
 	// If this include fails it means that the default controller in the Routes.php file is not resolving to something valid.
@@ -286,7 +263,6 @@
 
 /*
  * ------------------------------------------------------
- *  Security check
  *  安全检查
  * ------------------------------------------------------
  *
@@ -328,7 +304,6 @@
 
 /*
  * ------------------------------------------------------
- *  Is there a "pre_controller" hook?
  *  是否存在 "pre_controller" 勾子？
  * ------------------------------------------------------
  */
@@ -337,7 +312,6 @@
 
 /*
  * ------------------------------------------------------
- *  Instantiate the requested controller
  *  实例化 requested 控制器
  * ------------------------------------------------------
  */
@@ -361,7 +335,6 @@
  *  调用 requested 方法
  * ------------------------------------------------------
  */
-	// Is there a "remap" function? If so, we call it instead
 	// 是否存在 "remap" 函数？如果是，则呼叫它插入 
 	if (method_exists($CI, '_remap'))
 	{
@@ -373,7 +346,6 @@
 		// methods, so we'll use this workaround for consistent behavior
 		if ( ! in_array(strtolower($method), array_map('strtolower', get_class_methods($CI))))
 		{
-			// Check and see if we are using a 404 override and use it.
 			// 检查看看，如果使用了404重写就使用它。
 			if ( ! empty($RTR->routes['404_override']))
 			{
@@ -401,8 +373,6 @@
 			}
 		}
 
-		// Call the requested method.
-		// Any URI segments present (besides the class/function) will be passed to the method for convenience
 		// 呼叫请求的方法
 		// 任意 URI 段的处理（除了类/函数）将传给方法转换
 		call_user_func_array(array(&$CI, $method), array_slice($URI->rsegments, 2)); // 呼叫用户函数组
@@ -414,7 +384,6 @@
 
 /*
  * ------------------------------------------------------
- *  Is there a "post_controller" hook?
  *  是否存在 "post_controller" 勾子？
  * ------------------------------------------------------
  */
@@ -423,7 +392,6 @@
 
 /*
  * ------------------------------------------------------
- *  Send the final rendered output to the browser
  *  把最终的内容输出到浏览器
  * ------------------------------------------------------
  */
@@ -438,7 +406,6 @@
 
 /*
  * ------------------------------------------------------
- *  Is there a "post_system" hook?
  *  是否存在 "post_system" 勾子？
  * ------------------------------------------------------
  */
@@ -447,7 +414,6 @@
 
 /*
  * ------------------------------------------------------
- *  Close the DB connection if one exists
  *  如果存在数据库连接，则关闭它。
  * ------------------------------------------------------
  */

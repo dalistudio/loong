@@ -16,10 +16,8 @@
 // ------------------------------------------------------------------------
 
 /**
- * CodeIgniter Config Class
  * 配置文件类
  *
- * This class contains functions that enable config files to be managed
  * 这个类包含的函数，用于管理配置文件
  *
  * @package		CodeIgniter
@@ -31,7 +29,6 @@
 class CI_Config {
 
 	/**
-	 * List of all loaded config values
 	 * 加载所有的配置值到链表
 	 *
 	 * @var array
@@ -51,7 +48,6 @@ class CI_Config {
 	var $_config_paths = array(APPPATH);
 
 	/**
-	 * Constructor
 	 * 构造函数
 	 *
 	 * Sets the $config data from the primary config.php file as a class variable
@@ -89,7 +85,6 @@ class CI_Config {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Load Config File
 	 * 加载配置文件
 	 *
 	 * @access	public

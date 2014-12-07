@@ -16,7 +16,6 @@
 // ------------------------------------------------------------------------
 
 /**
- * Exceptions Class
  * 意外处理类
  *
  * @package		CodeIgniter
@@ -63,7 +62,6 @@ class CI_Exceptions {
 
 
 	/**
-	 * Constructor
 	 * 构造函数
 	 */
 	public function __construct()
@@ -75,7 +73,6 @@ class CI_Exceptions {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Exception Logger
 	 * 意外处理日志
 	 *
 	 * This function logs PHP generated error messages
@@ -97,7 +94,6 @@ class CI_Exceptions {
 	// --------------------------------------------------------------------
 
 	/**
-	 * 404 Page Not Found Handler
 	 * 404 页面没有找到处理器
 	 *
 	 * @access	private
@@ -123,7 +119,6 @@ class CI_Exceptions {
 	// --------------------------------------------------------------------
 
 	/**
-	 * General Error Page
 	 * 通用错误页面
 	 *
 	 * This function takes an error message as input

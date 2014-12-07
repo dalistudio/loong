@@ -16,7 +16,6 @@
 // ------------------------------------------------------------------------
 
 /**
- * Common Functions
  * 公共函数
  *
  * Loads the base classes and executes the request.
@@ -60,7 +59,6 @@ if ( ! function_exists('is_php'))
 // ------------------------------------------------------------------------
 
 /**
- * Tests for file writability
  * 测试文件是否可写
  *
  * is_writable() returns TRUE on Windows servers when you really can't write to
@@ -109,7 +107,6 @@ if ( ! function_exists('is_really_writable'))
 // ------------------------------------------------------------------------
 
 /**
-* Class registry
 * 类注册
 *
 * This function acts as a singleton.  If the requested class does not
@@ -209,7 +206,6 @@ if ( ! function_exists('is_loaded'))
 // ------------------------------------------------------------------------
 
 /**
-* Loads the main config.php file
 * 加载主配置文件 config.php
 *
 * This function lets us grab the config file even if the Config class
@@ -268,7 +264,6 @@ if ( ! function_exists('get_config'))
 // ------------------------------------------------------------------------
 
 /**
-* Returns the specified config item
 * 返回指定配置项
 *
 * @access	public
@@ -298,7 +293,6 @@ if ( ! function_exists('config_item'))
 // ------------------------------------------------------------------------
 
 /**
-* Error Handler
 * 错误处理器
 *
 * This function lets us invoke the exception class and
@@ -323,7 +317,6 @@ if ( ! function_exists('show_error'))
 // ------------------------------------------------------------------------
 
 /**
-* 404 Page Handler
 * 404 页面处理器
 *
 * This function is similar to the show_error() function above
@@ -346,7 +339,6 @@ if ( ! function_exists('show_404'))
 // ------------------------------------------------------------------------
 
 /**
-* Error Logging Interface
 * 错误日志接口
 *
 * We use this as a simple mechanism to access the logging
@@ -374,7 +366,6 @@ if ( ! function_exists('log_message'))
 // ------------------------------------------------------------------------
 
 /**
- * Set HTTP Status Header
  * 设置 HTTP 状态头
  *
  * @access	public

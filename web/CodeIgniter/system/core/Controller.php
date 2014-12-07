@@ -16,7 +16,6 @@
 // ------------------------------------------------------------------------
 
 /**
- * CodeIgniter Application Controller Class
  * 控制器基类
  *
  * This class object is the super class that every library in
@@ -33,7 +32,6 @@ class CI_Controller {
 	private static $instance;
 
 	/**
-	 * Constructor
 	 * 构造函数
 	 */
 	public function __construct()

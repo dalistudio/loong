@@ -16,9 +16,8 @@
 // ------------------------------------------------------------------------
 
 /**
- * CodeIgniter Hooks Class
+ * 勾子类
  *
- * Provides a mechanism to extend the base system without hacking.
  * 提供一种机制来扩展基本系统，无需骇客它。
  *
  * @package		CodeIgniter
@@ -30,21 +29,18 @@
 class CI_Hooks {
 
 	/**
-	 * Determines wether hooks are enabled
 	 * 确定是否开启 hooks
 	 *
 	 * @var bool
 	 */
 	var $enabled		= FALSE;
 	/**
-	 * List of all hooks set in config/hooks.php
 	 * 所有 hooks 列表设置在 config/hooks.php文件中
 	 *
 	 * @var array
 	 */
 	var $hooks			= array();
 	/**
-	 * Determines wether hook is in progress, used to prevent infinte loops
 	 * 决定是否用在进程中，用来防止死循环。
 	 *
 	 * @var bool
@@ -52,7 +48,6 @@ class CI_Hooks {
 	var $in_progress	= FALSE;
 
 	/**
-	 * Constructor
 	 * 构造函数
 	 *
 	 */
@@ -65,7 +60,6 @@ class CI_Hooks {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Initialize the Hooks Preferences
 	 * 初始化 Hooks 偏好参数
 	 *
 	 * @access	private
@@ -75,8 +69,6 @@ class CI_Hooks {
 	{
 		$CFG =& load_class('Config', 'core'); // 加载配置类
 
-		// If hooks are not enabled in the config file
-		// there is nothing else to do
 		// 如果 Hooks 没有在配置文件中启用，则这里没有什么事做。
 
 		if ($CFG->item('enable_hooks') == FALSE)
@@ -84,8 +76,6 @@ class CI_Hooks {
 			return;
 		}
 
-		// Grab the "hooks" definition file.
-		// If there are no hooks, we're done.
 		// 获取 “hooks” 定义文件，如果没有hooks，则什么都不做。
 
 		if (defined('ENVIRONMENT') AND is_file(APPPATH.'config/'.ENVIRONMENT.'/hooks.php'))
@@ -112,7 +102,6 @@ class CI_Hooks {
 	/**
 	 * Call Hook
 	 *
-	 * Calls a particular hook
 	 * 呼叫特殊的 hook
 	 *
 	 * @access	private
@@ -146,7 +135,6 @@ class CI_Hooks {
 	/**
 	 * Run Hook
 	 *
-	 * Runs a particular hook
 	 * 运行特殊的 hook
 	 *
 	 * @access	private
@@ -220,14 +208,12 @@ class CI_Hooks {
 		}
 
 		// -----------------------------------
-		// Set the in_progress flag
 		// 设置 在进程内 标志
 		// -----------------------------------
 
 		$this->in_progress = TRUE;
 
 		// -----------------------------------
-		// Call the requested class and/or function
 		// 呼叫请求 类 和/或 函数
 		// -----------------------------------
 

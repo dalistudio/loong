@@ -16,11 +16,8 @@
 // ------------------------------------------------------------------------
 
 /**
- * CodeIgniter Benchmark Class
  * 基准测试类
  *
- * This class enables you to mark points and calculate the time difference
- * between them.  Memory consumption can also be displayed.
  * 这个类使你可以标准点用于计算他们之间的时间差，内存消耗也可以显示。
  *
  * @package		CodeIgniter
@@ -32,7 +29,6 @@
 class CI_Benchmark {
 
 	/**
-	 * List of all benchmark markers and when they were added
 	 * 添加到链表所有基准标志
 	 *
 	 * @var array
@@ -42,11 +38,8 @@ class CI_Benchmark {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Set a benchmark marker
 	 * 设置一个基准标志
 	 *
-	 * Multiple calls to this function can be made so that several
-	 * execution points can be timed
 	 * 多出调用这个函数，可以使用多个点的定时器
 	 *
 	 * @access	public
@@ -61,7 +54,6 @@ class CI_Benchmark {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Calculates the time difference between two marked points.
 	 * 计算两个标志点之间的时间差
 	 *
 	 * If the first parameter is empty this function instead returns the
@@ -101,7 +93,6 @@ class CI_Benchmark {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Memory Usage
 	 * 内存使用
 	 *
 	 * This function returns the {memory_usage} pseudo-variable.
