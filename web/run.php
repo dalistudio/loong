@@ -1,8 +1,8 @@
 <?php
 	require 'compress.php';
-	//file_put_contents('output.php',replace_php_src('CodeIgniter/system/core/CodeIgniter.php'));
+	//file_put_contents('output.php',replace_php_src('framework/system/core/CodeIgniter.php'));
 
-	$dir = "./CodeIgniter/system/core";  //要获取的目录
+	$dir = "./framework/system/core";  //要获取的目录
 	a($dir);
 	function a($dir){
 		if (is_dir($dir)){

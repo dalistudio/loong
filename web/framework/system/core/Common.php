@@ -3,18 +3,8 @@
  * Copyright (c) 2014, wangdali <wangdali@qq.com>
  */
 
-// ------------------------------------------------------------------------
-
 /**
  * 公共函数
- *
- * Loads the base classes and executes the request.
- *
- * @package		CodeIgniter
- * @subpackage	codeigniter
- * @category	Common Functions
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/
  */
 
 // ------------------------------------------------------------------------
@@ -493,7 +483,7 @@ if ( ! function_exists('_exception_handler'))
 // --------------------------------------------------------------------
 
 /**
- * Remove Invisible Characters
+ * 删除不可打印的字符
  *
  * This prevents sandwiching null characters
  * between ascii characters, like Java\0script.

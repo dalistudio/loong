@@ -3,18 +3,10 @@
  * Copyright (c) 2014, wangdali <wangdali@qq.com>
  */
 
-// ------------------------------------------------------------------------
-
 /**
  * 基准测试类
  *
  * 这个类使你可以标准点用于计算他们之间的时间差，内存消耗也可以显示。
- *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	Libraries
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/benchmark.html
  */
 class CI_Benchmark {
 
@@ -100,7 +92,6 @@ class CI_Benchmark {
 
 }
 
-// END CI_Benchmark class
+// CI_Benchmark 类结束
 
-/* End of file Benchmark.php */
-/* Location: ./system/core/Benchmark.php */
+/* 文件结束，禁止此行后或之下添加任何东西 */

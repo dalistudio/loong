@@ -3,19 +3,11 @@
  * Copyright (c) 2014, wangdali <wangdali@qq.com>
  */
 
-// ------------------------------------------------------------------------
-
 /**
  * 控制器基类
  *
  * This class object is the super class that every library in
  * CodeIgniter will be assigned to.
- *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	Libraries
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/general/controllers.html
  */
 class CI_Controller {
 
@@ -49,6 +41,6 @@ class CI_Controller {
 		return self::$instance;
 	}
 }
-// END Controller class
+// 控制器类结束
 
 /* 文件结束，禁止此行后或之下添加任何东西 */

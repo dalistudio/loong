@@ -9,12 +9,6 @@
  * 配置文件类
  *
  * 这个类包含的函数，用于管理配置文件
- *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	Libraries
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/config.html
  */
 class CI_Config {
 

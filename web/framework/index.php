@@ -192,7 +192,7 @@ if (defined('ENVIRONMENT'))
  * 我们出发吧...
  *
  */
-require_once BASEPATH.'core/CodeIgniter.php';
+require_once BASEPATH.'core/Main.php';
 
 /* End of file index.php */
 /* Location: ./index.php */
