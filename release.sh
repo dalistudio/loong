@@ -51,6 +51,14 @@ cd ..
 
 ####################
 
+# 发布 Web 站点
+echo "Web Release"
+cd web
+./release.sh
+cd ..
+
+####################
+
 # 复制 DEBIAN 目录的文件到 release 目录
 echo "DEBIAN Release"
 cd ./DEBIAN/

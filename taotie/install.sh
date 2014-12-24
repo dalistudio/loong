@@ -38,6 +38,11 @@ if [ ! -d $RELEASE_DIR/opt/loong/web/www ];then
     mkdir -p $RELEASE_DIR/opt/loong/web/www
 fi
 
+# 创建测试的网站目录
+if [ ! -d $RELEASE_DIR/opt/loong/web/test ];then
+    mkdir -p $RELEASE_DIR/opt/loong/web/test
+fi
+
 # 安装 nginx 执行文件到 bin目录并重命名为 taotie
 cp ./nginx-1.6.2/objs/nginx $INSTALL_DIR/bin/taotie
 
@@ -51,6 +56,7 @@ chown -R loong:loong $INSTALL_DIR/etc/*
 
 # 安装 nginx 页面文件
 cp -r ./html/* $INSTALL_DIR/web/www
+cp -r ./html/* $INSTALL_DIR/web/test
 chown -R loong:loong $INSTALL_DIR/web
 
 echo "Install TaoTie End"

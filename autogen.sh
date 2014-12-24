@@ -40,4 +40,9 @@ cd ..
 #./autogen.sh
 #cd ..
 
+# 生成网站
+cd web 
+./autogen.sh
+cd ..
+
 

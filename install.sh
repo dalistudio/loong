@@ -24,6 +24,13 @@ cd ..
 
 ####################
 
+# 安装 Web 网站
+cd web
+./install.sh
+cd ..
+
+####################
+
 # 安装 PiXiu 应用服务器
 cd pixiu
 ./install.sh

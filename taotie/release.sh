@@ -48,6 +48,11 @@ if [ ! -d $RELEASE_DIR/opt/loong/web/www ];then
     mkdir -p $RELEASE_DIR/opt/loong/web/www
 fi
 
+# 创建测试的网站目录
+if [ ! -d $RELEASE_DIR/opt/loong/web/test ];then
+    mkdir -p $RELEASE_DIR/opt/loong/web/test
+fi
+
 # 复制 nginx 执行文件到 bin目录并重命名为 taotie
 cp ./nginx-1.6.2/objs/nginx $RELEASE_DIR/opt/loong/bin/taotie
 
@@ -61,6 +66,7 @@ chown -R loong:loong $RELEASE_DIR/opt/loong/etc/*
 
 # 复制 nginx 页面文件
 cp -r ./web/* $RELEASE_DIR/opt/loong/web/www/
+cp -r ./web/* $RELEASE_DIR/opt/loong/web/test/
 chown -R loong:loong $RELEASE_DIR/opt/loong/web/
 
 echo "Release TaoTie End"

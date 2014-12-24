@@ -1,4 +1,4 @@
-Package: loong
+Package: loong-server
 Source: empathy
 Version: 2.0.0
 Architecture: amd64
@@ -10,7 +10,7 @@ Replaces:
 Section: admin
 Priority: optional
 Homepage: http://dalistudio.net
-Description: loong web server
+Description: loong server system
  The system includes:
     * TaoToe Web Server
     * BiXi Script Server
